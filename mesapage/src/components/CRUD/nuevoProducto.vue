@@ -74,9 +74,19 @@
                                     style="width : 330px; heigth : 5px">
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-primary btn-bloc">
-                                        Agregar producto
-                                    </button>
+
+                                    <template v-if="editar===false">
+                                        <button class="btn btn-primary btn-bloc">
+                                            Agregar Producto
+                                        </button>
+                                    </template>
+                                        
+                                    <template v-else>
+                                        <button class="btn btn-primary btn-bloc">
+                                            Modificar
+                                        </button>
+                                    </template>
+                                    
                                 </div>
                                 
                             </form>
@@ -88,11 +98,11 @@
             <div class="col order-12 col-md-6"> 
                 <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
                 <b-table striped hover :items="arrayproductos" :fields="fields" :filter="textoBusqueda" :per-page="prodXPagina" :current-page="pagActual">
-                     <template #cell(actions)>
-                        <b-button size="sm" class="mr-1">
+                     <template #cell(actions)="row">
+                        <b-button @click="editarProducto(row.item)" variant="success" size="sm" class="mr-1">
                             Editar
                         </b-button>
-                        <b-button size="sm" class="mr-1">
+                        <b-button variant="danger" size="sm" class="mr-1">
                             Eliminar
                         </b-button>
                     </template>
@@ -132,6 +142,7 @@
                 prodXPagina: 10,
                 pagActual: 1,
                 arrayproductos:[],
+                editar: false,
                 fields: [
                     {
                         key: '_id',
@@ -159,31 +170,39 @@
                 });
             },
             agregarProducto() {
+                
                 let me=this;
-                console.log(this.producto.nombre);
-                axios.post('http://localhost:4000/api/Producto/add',
-                {'nombre':this.producto.nombre,
-                'precio':this.producto.precio,
-                'stockS':this.producto.stockS,
-                'stockM':this.producto.stockM,
-                'stockL':this.producto.stockL,
-                'stockXL':this.producto.stockXL,
-                'descripcion':this.producto.descripcion,
-                'categoria':this.producto.categoria,
-                'genero':this.producto.genero,
-                'temporada':this.producto.temporada,
-                'imagen':this.producto.imagen
-                })
-                .then(function(response){
-                    //new Producto();
-                    me.listar();
-                })
-                .catch(function(error){
-                    console.log(error);
-                    alert('Datos no validos');
-                });
+                if(me.editar === false){
+                    console.log(this.producto.nombre);
+                    axios.post('http://localhost:4000/api/Producto/add',
+                    {'nombre':this.producto.nombre,
+                    'precio':this.producto.precio,
+                    'stockS':this.producto.stockS,
+                    'stockM':this.producto.stockM,
+                    'stockL':this.producto.stockL,
+                    'stockXL':this.producto.stockXL,
+                    'descripcion':this.producto.descripcion,
+                    'categoria':this.producto.categoria,
+                    'genero':this.producto.genero,
+                    'temporada':this.producto.temporada,
+                    'imagen':this.producto.imagen
+                    })
+                    .then(function(response){
+                        //new Producto();
+                        me.listar();
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+                    });
+                }
+            },
+            editarProducto(item){
+                let me=this;
+                me.editar = true;
+                console.log(item)
+                this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
             }
         }
- 
-}
+    }
 </script>
