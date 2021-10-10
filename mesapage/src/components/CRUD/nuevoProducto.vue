@@ -143,6 +143,7 @@
                 pagActual: 1,
                 arrayproductos:[],
                 editar: false,
+                idEditar: '',
                 fields: [
                     {
                         key: '_id',
@@ -169,6 +170,21 @@
                     console.log(error);
                 });
             },
+
+            limpiar(){
+                let me = this;
+                me.producto.nombre = '';
+                me.producto.precio = '';
+                me.producto.stockS = '';
+                me.producto.stockM = '';
+                me.producto.stockL = '';
+                me.producto.stockXL = '';
+                me.producto.descripcion = '';
+                me.producto.categoria = '';
+                me.producto.genero = '';
+                me.producto.temporada = '';
+                me.producto.imagen = '';
+            },
             agregarProducto() {
                 
                 let me=this;
@@ -189,6 +205,34 @@
                     })
                     .then(function(response){
                         //new Producto();
+                        me.limpiar();
+                        me.listar();
+
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+                    });
+                }
+                else{
+                    //console.log(me.idEditar);
+                    axios.put('http://localhost:4000/api/Producto/update',
+                    {'_id':me.idEditar,
+                    'nombre':this.producto.nombre,
+                    'precio':this.producto.precio,
+                    'stockS':this.producto.stockS,
+                    'stockM':this.producto.stockM,
+                    'stockL':this.producto.stockL,
+                    'stockXL':this.producto.stockXL,
+                    'descripcion':this.producto.descripcion,
+                    'categoria':this.producto.categoria,
+                    'genero':this.producto.genero,
+                    'temporada':this.producto.temporada,
+                    'imagen':this.producto.imagen
+                    })
+                    .then(function(response){
+                        me.editar = false;
+                        me.limpiar();
                         me.listar();
                     })
                     .catch(function(error){
@@ -202,6 +246,7 @@
                 me.editar = true;
                 console.log(item)
                 this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
+                me.idEditar = item._id;
             }
         }
     }
