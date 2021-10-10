@@ -43,7 +43,9 @@ export default {
     update: async (req,res,next) =>{
         try {
             const reg= await models.Producto.findByIdAndUpdate({_id:req.body._id},{nombre:req.body.nombre,precio:req.body.precio,
-                stock:req.body.stock,Descripcion:req.body.Descripcion,Categoria:req.body.Categoria,Genero:req.body.Genero,Temporada:req.body.Temporada});
+                stockS:req.body.stockS,stockM:req.body.stockM,stockL:req.body.stockL,stockXL:req.body.stockXL,
+                descripcion:req.body.descripcion,categoria:req.body.categoria,genero:req.body.genero,temporada:req.body.temporada,
+                disponible:req.body.disponible,imagen:req.body.imagen});
                 res.status(200).json(reg);
         } catch(e){
             res.status(500).send({
