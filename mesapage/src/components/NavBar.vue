@@ -36,12 +36,14 @@
             </b-nav-item-dropdown>
 
 
-            <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
-            
+            <!-- <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input> -->
+           
+            <busqueda-form>
+            </busqueda-form>
             <!-- Redirecciona a la Busqueda --> 
             <!--<router-link to="/Busqueda">-->
             
-            <b-button id="botonBusqueda" href="Busqueda" v size="sm" class="my-2 my-sm-0" type="submit">GO</b-button>
+            <!-- <b-button id="botonBusqueda" href="Busqueda" v size="sm" class="my-2 my-sm-0" type="submit">GO</b-button> -->
 
             <router-link to="/Carrito">
 
@@ -61,15 +63,21 @@
 
 </template>
 
-<script>
 
-    export default {
-    data() {
-      return {
-        textoBusqueda:''
-      }
+<script>
+import BuscadorApp from '../components/BuscadorApp.vue'
+import BusquedaForm from '../components/BusquedaForm.vue'
+
+  export default {
+    components: { BuscadorApp, BusquedaForm },
+      data() {
+        return {
+          textoBusqueda:''
+        }
     }
+
   }
+
 </script>
 
 <style scoped>

@@ -74,9 +74,19 @@
                                     style="width : 330px; heigth : 5px">
                                 </div>
                                 <div class="text-center">
-                                    <button class="btn btn-primary btn-bloc">
-                                        Agregar producto
-                                    </button>
+
+                                    <template v-if="editar===false">
+                                        <button class="btn btn-primary btn-bloc">
+                                            Agregar Producto
+                                        </button>
+                                    </template>
+                                        
+                                    <template v-else>
+                                        <button class="btn btn-primary btn-bloc">
+                                            Modificar
+                                        </button>
+                                    </template>
+                                    
                                 </div>
                                 
                             </form>
@@ -88,11 +98,11 @@
             <div class="col order-12 col-md-6"> 
                 <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
                 <b-table striped hover :items="arrayproductos" :fields="fields" :filter="textoBusqueda" :per-page="prodXPagina" :current-page="pagActual">
-                     <template #cell(actions)>
-                        <b-button size="sm" class="mr-1">
+                     <template #cell(actions)="row">
+                        <b-button @click="editarProducto(row.item)" variant="success" size="sm" class="mr-1">
                             Editar
                         </b-button>
-                        <b-button size="sm" class="mr-1">
+                        <b-button @click="eliminarProducto(row.item)" variant="danger" size="sm" class="mr-1">
                             Eliminar
                         </b-button>
                     </template>
@@ -132,6 +142,9 @@
                 prodXPagina: 10,
                 pagActual: 1,
                 arrayproductos:[],
+                editar: false,
+                idEliminar : '',
+                idEditar: '',
                 fields: [
                     {
                         key: '_id',
@@ -158,32 +171,102 @@
                     console.log(error);
                 });
             },
+
+            limpiar(){
+                let me = this;
+                me.producto.nombre = '';
+                me.producto.precio = '';
+                me.producto.stockS = '';
+                me.producto.stockM = '';
+                me.producto.stockL = '';
+                me.producto.stockXL = '';
+                me.producto.descripcion = '';
+                me.producto.categoria = '';
+                me.producto.genero = '';
+                me.producto.temporada = '';
+                me.producto.imagen = '';
+            },
             agregarProducto() {
+                
                 let me=this;
-                console.log(this.producto.nombre);
-                axios.post('http://localhost:4000/api/Producto/add',
-                {'nombre':this.producto.nombre,
-                'precio':this.producto.precio,
-                'stockS':this.producto.stockS,
-                'stockM':this.producto.stockM,
-                'stockL':this.producto.stockL,
-                'stockXL':this.producto.stockXL,
-                'descripcion':this.producto.descripcion,
-                'categoria':this.producto.categoria,
-                'genero':this.producto.genero,
-                'temporada':this.producto.temporada,
-                'imagen':this.producto.imagen
-                })
+                if(me.editar === false){
+                    console.log(this.producto.nombre);
+                    axios.post('http://localhost:4000/api/Producto/add',
+                    {'nombre':this.producto.nombre,
+                    'precio':this.producto.precio,
+                    'stockS':this.producto.stockS,
+                    'stockM':this.producto.stockM,
+                    'stockL':this.producto.stockL,
+                    'stockXL':this.producto.stockXL,
+                    'descripcion':this.producto.descripcion,
+                    'categoria':this.producto.categoria,
+                    'genero':this.producto.genero,
+                    'temporada':this.producto.temporada,
+                    'imagen':this.producto.imagen
+                    })
+                    .then(function(response){
+                        //new Producto();
+                        me.limpiar();
+                        me.listar();
+
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+                    });
+                }
+                else{
+                    //console.log(me.idEditar);
+                    axios.put('http://localhost:4000/api/Producto/update',
+                    {'_id':me.idEditar,
+                    'nombre':this.producto.nombre,
+                    'precio':this.producto.precio,
+                    'stockS':this.producto.stockS,
+                    'stockM':this.producto.stockM,
+                    'stockL':this.producto.stockL,
+                    'stockXL':this.producto.stockXL,
+                    'descripcion':this.producto.descripcion,
+                    'categoria':this.producto.categoria,
+                    'genero':this.producto.genero,
+                    'temporada':this.producto.temporada,
+                    'imagen':this.producto.imagen
+                    })
+                    .then(function(response){
+                        me.editar = false;
+                        me.limpiar();
+                        me.listar();
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+                    });
+                }
+            },
+            editarProducto(item){
+                let me=this;
+                me.editar = true;
+                console.log(item)
+                this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
+                me.idEditar = item._id;
+            },
+            eliminarProducto(item){
+                console.log(item._id);
+                let me=this;
+                me.idEliminar = item._id;
+                axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
+                )
                 .then(function(response){
-                    //new Producto();
-                    me.listar();
-                })
-                .catch(function(error){
-                    console.log(error);
-                    alert('Datos no validos');
-                });
+                        me.delete = false;
+                        me.listar();
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+
+                    });
+                
+
             }
         }
- 
-}
+    }
 </script>

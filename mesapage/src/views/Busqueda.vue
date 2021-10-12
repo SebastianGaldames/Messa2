@@ -16,8 +16,9 @@
         <!-- Right aligned nav items -->
         <b-navbar-nav class="ml-auto">
           <b-nav-form>
-            <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
-            
+            <!-- <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input> -->
+            <buscador-app>
+            </buscador-app>
             <!-- Redirecciona a la Busqueda --> 
             <!--<router-link to="/Busqueda">-->
             
@@ -53,9 +54,12 @@
 
 
 <script>
+import BuscadorApp from '../components/BuscadorApp.vue'
     export default {
+  components: { BuscadorApp },
     data() {
       return {
+        BuscadorApp,
         items: [
           { Producto: 'Polera Azul', Precio: '35000' },
           { Producto: 'Pantalon jeans', Precio: '20000' },

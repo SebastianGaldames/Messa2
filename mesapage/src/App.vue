@@ -21,6 +21,13 @@
   </div>
 </template>
 
+<script>
+export default {
+  mounted() {
+    this.$store.dispatch("obtener_productos");
+  },
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
