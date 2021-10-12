@@ -56,7 +56,8 @@ export default {
     },
     remove: async (req,res,next) =>{
         try {
-            const reg = await models.Producto.findByIdAndDelete({_id:req.body._id});
+            const{id} = req.params;
+            const reg = await models.Producto.findByIdAndDelete({_id: id});
             res.status(200).json(reg);
 
         } catch(e){

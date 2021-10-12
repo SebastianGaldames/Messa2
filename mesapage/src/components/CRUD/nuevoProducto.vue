@@ -102,7 +102,7 @@
                         <b-button @click="editarProducto(row.item)" variant="success" size="sm" class="mr-1">
                             Editar
                         </b-button>
-                        <b-button variant="danger" size="sm" class="mr-1">
+                        <b-button @click="eliminarProducto(row.item)" variant="danger" size="sm" class="mr-1">
                             Eliminar
                         </b-button>
                     </template>
@@ -143,6 +143,7 @@
                 pagActual: 1,
                 arrayproductos:[],
                 editar: false,
+                idEliminar : '',
                 idEditar: '',
                 fields: [
                     {
@@ -247,6 +248,24 @@
                 console.log(item)
                 this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
                 me.idEditar = item._id;
+            },
+            eliminarProducto(item){
+                console.log(item._id);
+                let me=this;
+                me.idEliminar = item._id;
+                axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
+                )
+                .then(function(response){
+                        me.delete = false;
+                        me.listar();
+                    })
+                    .catch(function(error){
+                        console.log(error);
+                        alert('Datos no validos');
+
+                    });
+                
+
             }
         }
     }
