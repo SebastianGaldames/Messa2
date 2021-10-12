@@ -1,6 +1,6 @@
 <template>
     <div class="border opinionBox">
-        <b-row align-h="center">
+        <b-row align-h="center" align-v="center">
             <b-col cols="12" md="auto" >
                 <b-row>
                     <h4>Oct</h4>
