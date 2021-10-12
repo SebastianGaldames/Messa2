@@ -1,14 +1,8 @@
 <template>
-
-  <div>
-    <NavBar>
-    </NavBar>
-    <Carrousel>
-    </Carrousel>
-
-  </div>
-  
-  
+    <div>
+        <NavBar>
+        </NavBar>
+    </div>
 
 </template>
 
@@ -22,3 +16,7 @@
       }
   }
 </script>
+
+<style scoped>
+
+</style>
