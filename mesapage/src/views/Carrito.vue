@@ -1,7 +1,7 @@
 <template>
 
-  <b-container>
-    <Home></Home> 
+  <div>
+    <Home></Home>
     <b-row b-row align-h="between">
         <b-col cols="5" md="8">
           <div>
@@ -115,7 +115,7 @@
       </b-col>
 
     </b-row>    
-  </b-container>
+  </div>
   
 </template>
 

@@ -7,7 +7,7 @@
           <b-nav-form>
             <!-- Items desplegables -->
             <!-- Hombre -->
-            <b-nav-item-dropdown text="Hombre" right class= "letra">
+            <b-nav-item-dropdown text="Moda Masculina" right class= "letra">
           <b-dropdown-item href="#">Pantalones</b-dropdown-item>
           <b-dropdown-item href="#">Poleras</b-dropdown-item>
           <b-dropdown-item href="#">Polerones</b-dropdown-item>
@@ -17,7 +17,7 @@
           <b-dropdown-item href="#">Abrigos</b-dropdown-item>
             </b-nav-item-dropdown>
             <!-- Mujer -->
-            <b-nav-item-dropdown text="Mujer" right class= "letra">
+            <b-nav-item-dropdown text="Moda Femenina" right class= "letra">
           <b-dropdown-item href="#">Pantalones</b-dropdown-item>
           <b-dropdown-item href="#">Poleras</b-dropdown-item>
           <b-dropdown-item href="#">Polerones</b-dropdown-item>
