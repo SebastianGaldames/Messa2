@@ -7,7 +7,7 @@ router.post('/add',ProductoController.add);
 router.get('/query',ProductoController.query);
 router.get('/list',ProductoController.list);
 router.put('/update',ProductoController.update);
-router.delete('/remove',ProductoController.remove);
+router.delete('/remove/:id',ProductoController.remove);
 router.put('/activate',ProductoController.activate);
 router.put('/deactivate',ProductoController.deactivate);
 
