@@ -1,7 +1,9 @@
 <template>
 
   <div>
-    <Home></Home>
+    
+    <NavBar>
+    </NavBar>
     <b-row b-row align-h="between">
         <b-col cols="5" md="8">
           <div>
@@ -121,13 +123,13 @@
 
 
 <script>
+  import NavBar from '../components/NavBar.vue';
   import ProductCard from "./ProductCard";
-  import Home from "./Home";
 
   export default {    
     props: ['data'],
     name: "Carrito",
-    components:{Home,ProductCard},    
+    components:{NavBar,ProductCard},    
     data() {
       return {
         all:{
