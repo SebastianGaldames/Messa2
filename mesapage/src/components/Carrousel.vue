@@ -6,7 +6,7 @@
         :interval="4000"
         controls
         indicators
-        background="#ababab"
+        background="#91B5F7"
         img-width="200"
         img-height="200"
         style="text-shadow: 1px 1px 2px #333;"
@@ -17,7 +17,7 @@
         <b-carousel-slide>
           <template #img>
             <!-- Con esto se puede reenderizar imagen -->
-            <b-img src="https://picsum.photos/1024/480/?image=54" width="500" height="400">
+            <b-img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80" >
             </b-img>
           </template>
         </b-carousel-slide>
@@ -28,7 +28,7 @@
           <template #img>
 
             <!-- Con esto se puede reenderizar imagen -->
-            <b-img src="https://picsum.photos/1024/480/?image=54" width="500" height="400">
+            <b-img src="https://images.unsplash.com/photo-1506152983158-b4a74a01c721?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80">
             </b-img>
             
           </template>
@@ -41,7 +41,7 @@
           <template #img>
 
             <!-- Con esto se puede reenderizar imagen -->
-            <b-img src="https://picsum.photos/1024/480/?image=54" width="500" height="400">
+            <b-img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1173&q=80">
             </b-img>
             
           </template>
@@ -54,7 +54,7 @@
           <template #img>
 
             <!-- Con esto se puede reenderizar imagen -->
-            <b-img src="https://picsum.photos/1024/480/?image=54" width="500" height="400">
+            <b-img src="https://images.unsplash.com/photo-1621446275748-0332ef046172?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1170&q=80">
             </b-img>
             
           </template>

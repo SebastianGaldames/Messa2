@@ -1,8 +1,8 @@
 <template>
 
   <div>
-    <nav-bar>
-    </nav-bar>
+    <NavBar>
+    </NavBar>
     <Carrousel>
     </Carrousel>
 
@@ -12,8 +12,8 @@
 
 </template>
 
-<script>
-  import NavBar from '../components/NavBar.vue';
+<script>import NavBar from '../components/NavBar.vue';
+  
   import Carrousel from '../components/Carrousel.vue';
 
   export default{
