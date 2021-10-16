@@ -6,7 +6,7 @@
       <b-row b-row align-h="between"> 
 <!-- Columnas Productos -> imagen + titulo -->
         <b-col> 
-          <b-card-img src="https://images.natura.cl/image/sku/principal_145x145/95842_1.jpg" alt="Image" class="rounded-0"></b-card-img>
+          <b-card-img src="https://s-print.cl/wp-content/uploads/2018/10/TW02T_P_BC_004_01.jpg" alt="Image" class="rounded-0"></b-card-img>
         </b-col>
         <b-col>
         <b-card-body title="Nombre Del producto">
