@@ -2,7 +2,7 @@
   <div>
     <NavBar>
     </NavBar>
-  
+    <div class="col col-md-5" style="width : 500px">
       <b-col>
         <b-row>
           <div class= "float-left">
@@ -36,6 +36,8 @@
           
         </b-row>
       </b-col>
+    </div>
+      
   </div>
 
 </template>
