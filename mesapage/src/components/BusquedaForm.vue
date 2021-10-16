@@ -2,35 +2,25 @@
 
     <div>
         <!-- <input v-model="Buscar" class="form-control" placeholder="Buscar" aria-describedby="basic-addon1"> -->
-
-        <b-form-input id="formulario" v-model="Buscar" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+        <form @submit.prevent="irBuscar">
+            <input id="busqueda" class="form-control" placeholder="Buscar" aria-describedby="basic-addon1">
             <!-- Redirecciona a la Busqueda --> 
             <!--<router-link to="/Busqueda">-->
-        <b-button id="botonBusqueda" href="Busqueda" v size="sm" class="my-2 my-sm-0" type="submit">GO</b-button>
-
-        <div class="input-group-append">
-            <!-- <button @click="show()" id="botonBuscar" type="submit" class="btn btn-primary mb-2">Buscar</button> -->
-        </div>
+            <button @click="irBuscar" id="botonBuscar" type="submit" class="btn btn-primary mb-2">Buscar</button>
+        </form>
     </div>
 </template>
-
+    
 <script>
     export default{
 
         data: function() {
             return  {
                 nombre : '',
+                buscar : false,
             }
         },
         computed:{
-            Buscar: {
-                get (){
-                    return this.$store.state.filter.consulta;
-                },
-                set (val){
-                    this.$store.commit('SET_QUERY',val);
-                }                
-            },
             disponible: {
                 get (){
                     return this.$store.state.filter.disponible;
@@ -42,16 +32,21 @@
         },
        methods : {
             // Creating function
-            show: function(){
-                
+            irBuscar(){
                 //this.nombre='';
-                
-                if(this.nombre!=null){
-                    //this.$router.push('/about')
-                    //alert(this.$store.methods.show)
+                this.buscar=true;
+                this.$store.commit('SET_BUSDISPO',this.buscar);
+
+                var porId=document.getElementById("busqueda").value;
+        
+                //console.log('Esto se va a buscar:',porId);
+                this.$store.commit('SET_QUERY',porId);
+                //console.log('Tamanno de busqueda',porId.length)
+                if(porId.length>1){
                     this.$router.push('/busqueda').catch(err => {})
-                    //return this.Buscar
                 }
+                //document.getElementsByClassName("mr-sm-2")[0].value = "";
+                
             }
         }
     }
