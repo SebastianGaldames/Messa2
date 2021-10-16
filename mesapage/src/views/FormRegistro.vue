@@ -7,7 +7,9 @@
 
         <b-row>
           <b-col>
-            Flecha atras
+            <div class= "float-left">
+            <b-button href="/" variant= "basic" class="btn-img" size="lg"></b-button>
+          </div>
           </b-col>
           <b-col>
             Ingresa tus datos
@@ -176,4 +178,14 @@ import BusquedaForm from '../components/BusquedaForm.vue';
 .colorBoton{
   background-color: #1c335f
 }
+
+.btn-img{
+    background-image: url("https://i.ibb.co/hZ7kJhV/atras.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 70px;
+    width: 70px;
+
+  }
 </style>
