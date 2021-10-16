@@ -2,12 +2,8 @@
   <div>
     <NavBar>
     </NavBar>
-  
+    <div class="col col-md-5" style="width : 500px">
       <b-col>
-        <b-row>
-          logo messa
-        </b-row>
-        <b-row>barrita iniciar sesion</b-row>
         <b-row>Usuario</b-row>
         <b-row>
           <b-form-input
@@ -34,6 +30,8 @@
           
         </b-row>
       </b-col>
+    </div>
+      
   </div>
 
 </template>
