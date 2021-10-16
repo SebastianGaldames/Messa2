@@ -5,7 +5,9 @@
   
       <b-col>
         <b-row>
-          logo messa
+          <div class= "float-left">
+            <b-button href="/" variant= "basic" class="btn-img" size="lg"></b-button>
+          </div>
         </b-row>
         <b-row>barrita iniciar sesion</b-row>
         <b-row>Usuario</b-row>
@@ -51,4 +53,14 @@
 .botonIniciarSesion{
   background-color: #1c335f
 }
+
+.btn-img{
+    background-image: url(https://i.ibb.co/Rg9yp6V/Logo-MEssa.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 40px;
+    width: 150px;
+
+  }
 </style>
