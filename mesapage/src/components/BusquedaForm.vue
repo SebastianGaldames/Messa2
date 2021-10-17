@@ -6,7 +6,9 @@
             <input id="busqueda" class="form-control" placeholder="Buscar" aria-describedby="basic-addon1">
             <!-- Redirecciona a la Busqueda --> 
             <!--<router-link to="/Busqueda">-->
-            <button @click="irBuscar" id="botonBuscar" type="submit" class="btn btn-primary mb-2">Buscar</button>
+            <button  @click="irBuscar" id="botonBuscar" class="btn btn-default">
+                <img src="https://imgur.com/HXHRBzm.png" style="width: 25px"/>
+            </button>
         </form>
     </div>
 </template>
@@ -37,15 +39,15 @@
                 this.buscar=true;
                 this.$store.commit('SET_BUSDISPO',this.buscar);
 
-                var porId=document.getElementById("busqueda").value;
-        
-                //console.log('Esto se va a buscar:',porId);
-                this.$store.commit('SET_QUERY',porId);
-                //console.log('Tamanno de busqueda',porId.length)
-                if(porId.length>1){
+                var buscado=document.getElementById("busqueda").value;
+                buscado = buscado.toLowerCase();
+                //console.log('Esto se va a buscar:',buscado);
+                this.$store.commit('SET_QUERY',buscado);
+                //console.log('Tamanno de busqueda',buscado.length)
+                if(buscado.length>1){
                     this.$router.push('/busqueda').catch(err => {})
                 }
-                //document.getElementsByClassName("mr-sm-2")[0].value = "";
+                //document.getElementsByClassName("form-control")[0].value = "";
                 
             }
         }

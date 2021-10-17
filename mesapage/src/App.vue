@@ -11,8 +11,6 @@
         <div id="nav" class= "float-right">
           <!-- aca accesos superiores -->
           <router-link to="/">Home</router-link> |
-          <router-link to="/about">About</router-link> |
-          <router-link to="/busqueda">Buscar</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
           <router-link to="/admin">Admin</router-link> |
