@@ -98,7 +98,9 @@
           <b-col cols="4">Mis Compras</b-col>
         </b-row>
         <b-row>
-          Tarjetas de productos comprados ligado a carrito
+          <div>
+            <b-table striped hover :items="items"></b-table>
+            </div>
         </b-row>
         <b-row align-v="end">
           <b-col cols="4">
@@ -180,8 +182,18 @@
 
   export default{
       components: {
-        NavBar
+        NavBar,
+        data() {
+      return {
+        items: [
+          { Nombre_Producto: 'Polera', Talla: 'L', Unidades: 2 },
+          { Nombre_Producto: 'Short', Talla: 'M', Unidades: 3 },
+          { Nombre_Producto: 'Pantalon', Talla: 'L', Unidades: 1 },
+          { Nombre_Producto: 'Pantalon', Talla: 'XL', Unidades: 2 }
+        ]
       }
+    }
+  }
   }
 </script>
 
@@ -200,3 +212,5 @@
 
   }
 </style>
+
+<template>
