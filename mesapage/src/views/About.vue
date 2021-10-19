@@ -1,3 +1,5 @@
+<template>
+
 <div>
 
     <h1>Sobre el proyecto</h1>
@@ -18,4 +20,4 @@
       
   }
 
-</script>
+</script> 
