@@ -29,6 +29,7 @@
           <b-col cols="5" class="nombreCol">
             <b-form-input
                 placeholder="Ingresa tu nombre completo"
+                input type="text" v-model="nombre"
             ></b-form-input>  
           </b-col> 
         </b-row>
@@ -52,6 +53,7 @@
           <b-col>
             <b-form-input  class="ampliado3"
                 placeholder="Ingresa tu dirección"
+                input type="text" v-model="direccion"
             ></b-form-input>  
           </b-col>
           <b-col class="ampliado2">
@@ -60,6 +62,7 @@
           <b-col>
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu nombre de usuario"
+                input type="text" v-model="nombreUsuario"
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -70,6 +73,7 @@
           <b-col>
             <b-form-input class="ampliado3"
                 placeholder="Ingresa tu número de casa o departamento"
+                input type="text" v-model="numero"
             ></b-form-input>  
           </b-col>
           <b-col class="ampliado2">
@@ -78,6 +82,7 @@
           <b-col>
             <b-form-input class="ampliado4"
               type="password" id="text-password" aria-describedby="password-help-block"
+               v-model="password"
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -88,6 +93,7 @@
           <b-col>
             <b-form-input class="ampliado3"
                 placeholder="Ingresa tu número de casa o departamento"
+                input type="text" v-model="comuna"
             ></b-form-input>  
           </b-col>
           <b-col class="ampliado2">
@@ -96,6 +102,7 @@
           <b-col>
             <b-form-input class="ampliado4"
               type="password" id="text-password" aria-describedby="password-help-block"
+              
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -106,6 +113,8 @@
           <b-col>
             <b-form-input class="ampliado3"
                 placeholder="Ingresa tu ciudad"
+                input type="text" v-model="ciudad"
+                
             ></b-form-input>  
           </b-col>
           <b-col class="ampliado2">
@@ -114,6 +123,7 @@
           <b-col>
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu E-mail de contacto"
+                input type="text" v-model="email"
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -124,6 +134,7 @@
           <b-col>
             <b-form-input class="ampliado3"
                 placeholder="Ingresa tu Región"
+                input type="text" v-model="region"
             ></b-form-input>  
           </b-col>
           <b-col class="ampliado2">
@@ -132,6 +143,7 @@
           <b-col>
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu teléfono"
+                input type="text" v-model="telefono"
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -172,6 +184,7 @@
               <div class="configButton2">
                 <b-button class="colorBoton">Guardar Cambios</b-button>
               </div>
+              <b-button @click="crear()" class="colorBoton">Guardar Cambios</b-button>
             </b-row>
           </b-col>
         </b-row>
@@ -181,10 +194,73 @@
 
 </template>
 
-<script>import NavBar from '../components/NavBar.vue';
+<script>
+import NavBar from '../components/NavBar.vue';
 import BusquedaForm from '../components/BusquedaForm.vue';
+import axios from 'axios'
+    class Usuario {
+        constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+            this.nombre= nombre;
+            this.rut= rut;
+            this.nombreUsuario= nombreUsuario;
+            this.email= email;
+            this.telefono= telefono;
+            this.direccion= direccion;
+            this.numero= numero;
+            this.comuna= comuna;
+            this.ciudad= ciudad;
+            this.region= region;
+            this.password = password;
+            this.imagen= imagen;
+        }
+    }
 
   export default{
+      data() {
+              return {
+                  
+                  nombre:'',
+                  rut:'',
+                  nombreUsuario:'',
+                  email: '',
+                  telefono:'',
+                  direccion:'',
+                  numero:'',
+                  comuna:'',
+                  ciudad:'',
+                  region:'',
+                  password:'',
+                  imagen:'',
+                  usuario: new Usuario(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen)
+                  
+              }
+          },
+      methods:{
+        crear(){
+          let me = this;
+          this.usuario = new Usuario(this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
+          this.numero,this.comuna,this.ciudad,this.region,this.password,this.imagen),
+          // console.log(me.usuario.nombre);
+          // console.log(me.usuario.rut);
+          // console.log(me.usuario.nombreUsuario);
+          // console.log(me.usuario.email);
+          // console.log(me.usuario.telefono);
+          // console.log(me.usuario.direccion);
+          // console.log(me.usuario.numero);
+          // console.log(me.usuario.comuna);
+          // console.log(me.usuario.ciudad);
+          // console.log(me.usuario.region);
+          // console.log(me.usuario.password);
+          // console.log(me.usuario.imagen);
+
+
+          
+          axios.post('http://localhost:4000/api/Usuario/add',this.usuario)
+          .then(function(response){
+              this.$router.push({path:'/'});
+          })
+        },
+      },
       components: {
         NavBar,
             BusquedaForm
