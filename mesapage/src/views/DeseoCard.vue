@@ -21,7 +21,7 @@
         </b-col>
 <!-- color del producto -->
         <b-col>
-          <b-card-text>     
+          <b-card-text  class = "ubicacionColor">     
                 Blanca estampada<!--¨Acà se llama el color del producto selecionado-->                 
           </b-card-text>
         </b-col>
@@ -70,6 +70,12 @@
     }
 
     .ubicacionTalla{
-        
+        margin-top: -43%;
+        margin-right: -74%;
+    }
+
+    .ubicacionColor{
+        margin-top: -43%;
+        margin-right: 60%;
     }
 </style>

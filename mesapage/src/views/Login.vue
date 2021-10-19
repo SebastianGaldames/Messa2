@@ -44,7 +44,7 @@
         </b-row>
         <b-row>
             <b-form-input
-              type="password" id="text-password" aria-describedby="password-help-block"
+              input type="password" id="text-password" aria-describedby="password-help-block"
               class="userInput" placeholder="Ingrese su contraseña"
               v-model="password"
             ></b-form-input>
