@@ -21,6 +21,7 @@
           </b-col>
           <b-col>
             <b-form-input
+                input type="text" v-model="Usuario.nombre"
                 placeholder="Ingresa tu nombre completo"
             ></b-form-input>  
           </b-col> 
@@ -39,6 +40,7 @@
           </b-col>
           <b-col>
             <b-form-input
+                input type="text" v-model="Usuario.direccion"
                 placeholder="Ingresa tu dirección"
             ></b-form-input>  
           </b-col>
@@ -47,6 +49,7 @@
           </b-col>
           <b-col>
             <b-form-input
+                input type="text" v-model="Usuario.nombreUsuario"
                 placeholder="Ingresa tu nombre de usuario"
             ></b-form-input>  
           </b-col>
@@ -58,6 +61,7 @@
           <b-col>
             <b-form-input
                 placeholder="Ingresa tu número de casa o departamento"
+                input type="text" v-model="Usuario.numero"
             ></b-form-input>  
           </b-col>
           <b-col>
@@ -65,7 +69,8 @@
           </b-col>
           <b-col>
             <b-form-input
-              type="password" id="text-password" aria-describedby="password-help-block"
+               input type="password" id="text-password" aria-describedby="password-help-block"
+               v-model="Usuario.password"
             ></b-form-input>  
           </b-col>
         </b-row>
@@ -75,7 +80,8 @@
           </b-col>
           <b-col>
             <b-form-input
-                placeholder="Ingresa tu número de casa o departamento"
+                placeholder="Ingresa tu Comuna"
+                input type="text" v-model="Usuario.comuna"
             ></b-form-input>  
           </b-col>
           <b-col>
@@ -162,6 +168,8 @@
   </div>
 
 </template>
+
+
 
 <script>import NavBar from '../components/NavBar.vue';
 import BusquedaForm from '../components/BusquedaForm.vue';
