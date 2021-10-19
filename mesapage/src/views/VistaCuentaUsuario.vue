@@ -111,13 +111,22 @@
         </b-row>
       </b-card-text></b-tab>
       <b-tab title="Lista de deseos"><b-card-text>
-          <b-row class="encabezado margenIzq">
-            Mi Lista de deseos
-          </b-row>
         <b-row>
             <div>
-              <b-table :items="items" :fields="fields" :tbody-tr-class="rowClass"></b-table>
-            </div>  
+            <b-card
+              title="Mi Lista de deseos"              
+              tag="article"
+              class="xl"
+            >
+            <b-row cols="6">
+              <b-col cols="4">Producto</b-col>
+              <b-col>Talla</b-col>
+              <b-col>Color</b-col>
+              <b-col></b-col>
+            </b-row>
+            <b-row><DeseoCard></DeseoCard></b-row>
+            </b-card> 
+          </div>  
         </b-row>
         <b-row>
             <b-button class="colorBoton configBoton4">Explorar más productos</b-button>
@@ -138,10 +147,14 @@
 </template>
 
 <script>import NavBar from '../components/NavBar.vue';
+import DeseoCard from "./DeseoCard";
 
   export default{
+    name: "VistaCuentaUsuario",
+    props: ['data'],
       components: {
-        NavBar,
+        NavBar, DeseoCard
+        },
         data() {
           return {
             items: [
@@ -150,12 +163,18 @@
               { Nombre_Producto: 'Pantalon', Talla: 'L', Unidades: 1 },
               { Nombre_Producto: 'Pantalon', Talla: 'XL', Unidades: 2 }
             ],
-            fields: ['first_name', 'last_name', 'age'],
-              items: [
-                { age: 40, first_name: 'Dickerson', last_name: 'Macdonald', status: 'awesome' },
-                { age: 21, first_name: 'Larsen', last_name: 'Shaw' },
-                { age: 89, first_name: 'Geneva', last_name: 'Wilson' }
+
+            all:{
+              arrProduct:[
+                {
+                  nameProduct:"",
+                  color: '',
+                  description:'',
+                  price:'',
+                  quantity:'',
+                }
               ]
+            }
           }
         },
       methods: {
@@ -164,7 +183,7 @@
           if (item.status === 'awesome') return 'table-success'
         }
       }
-    } 
+ 
   }
 </script>
 
