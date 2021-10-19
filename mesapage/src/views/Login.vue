@@ -51,7 +51,7 @@
         </b-row>
         <b-row>
           <div class="buttonDiv">
-            <b-button pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
+            
             <b-button  @click="busqueda()"  pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
           </div>
         </b-row>
