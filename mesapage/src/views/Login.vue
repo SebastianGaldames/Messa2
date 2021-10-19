@@ -34,6 +34,7 @@
         <b-row>
           <b-form-input
             placeholder="Ingrese su nombre de usuario" class="centerRow userInput"
+            input type="text" v-model="nombreUsuario"
           ></b-form-input>
         </b-row>
         <b-row class="centerRow passInput">
@@ -43,13 +44,15 @@
         </b-row>
         <b-row>
             <b-form-input
-              type="password" id="text-password" aria-describedby="password-help-block"
+              input type="password" id="text-password" aria-describedby="password-help-block"
               class="userInput" placeholder="Ingrese su contraseña"
+              v-model="password"
             ></b-form-input>
         </b-row>
         <b-row>
           <div class="buttonDiv">
             <b-button pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
+            <b-button  @click="busqueda()"  pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
           </div>
         </b-row>
         <div class="buttonDiv">
@@ -69,12 +72,37 @@
 
 </template>
 
-<script>import NavBar from '../components/NavBar.vue';
-
+<script>
+import NavBar from '../components/NavBar.vue';
+import axios from 'axios'
   export default{
       components: {
         NavBar
-      }
+      },
+      data() {
+            return {
+                
+                nombreUsuario:'',
+                password : ''
+            }
+        },
+         methods:{
+           busqueda(){
+
+
+               axios.post('http://localhost:4000/api/Usuario/login', {nombreUsuario: this.nombreUsuario, password: this.password})
+               .then(respuesta =>{
+                  this.$router.push({path:'/cuentaUsuario'})
+                  .catch(err => {console.log(err)});
+                  return respuesta.data;//'password correcta'
+               })
+               
+               .catch(function(error){
+                  console.log(error);
+               });
+            },
+            
+         }
   }
 </script>
 
