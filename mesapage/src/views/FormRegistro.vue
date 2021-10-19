@@ -4,140 +4,156 @@
     <NavBar>
     </NavBar>
 
-
-        <b-row>
-          <b-col>
-            <div class= "float-left">
-            <b-button href="/" variant= "basic" class="btn-img" size="lg"></b-button>
-          </div>
+      <b-col>
+        <div class="centrado">
+          <b-row>
+            <b-col>
+              <b>
+                <h1>
+                  <p style="color:#1c335f">
+                    <u>
+                      Ingresa tus datos
+                    </u>
+                  </p>
+                </h1>
+             </b>
+           </b-col>
+          </b-row>
+        </div>
+        <b-row class="contenedorNombre" align-v="center" align-h="start">
+          <b-col cols="3" class="nombreCol">
+            <div>
+              * Nombre Completo:
+            </div>
           </b-col>
-          <b-col>
-            Ingresa tus datos
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            * Nombre Completo:
-          </b-col>
-          <b-col>
+          <b-col cols="5" class="nombreCol">
             <b-form-input
                 placeholder="Ingresa tu nombre completo"
             ></b-form-input>  
           </b-col> 
         </b-row>
+        <div class="contenedorTotal">
         <b-row>
-          <b-col>
+          <b-col class="ampliado">
+            <h4>
             Datos dirección:
+            </h4>
           </b-col>
-          <b-col>
-            Creación de usuario:
+          <b-col class="ampliado">
+            <h4>
+              Creación de usuario:
+            </h4>
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Dirección:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input  class="ampliado3"
                 placeholder="Ingresa tu dirección"
             ></b-form-input>  
           </b-col>
-          <b-col>
+          <b-col class="ampliado2">
             * Nombre de Usuario:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado4"
                 placeholder="Ingresa tu nombre de usuario"
             ></b-form-input>  
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Número:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado3"
                 placeholder="Ingresa tu número de casa o departamento"
             ></b-form-input>  
           </b-col>
-          <b-col>
+          <b-col class="ampliado2">
             * Clave:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado4"
               type="password" id="text-password" aria-describedby="password-help-block"
             ></b-form-input>  
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Comuna:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado3"
                 placeholder="Ingresa tu número de casa o departamento"
             ></b-form-input>  
           </b-col>
-          <b-col>
+          <b-col class="ampliado2">
             * Reingrese clave:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado4"
               type="password" id="text-password" aria-describedby="password-help-block"
             ></b-form-input>  
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Ciudad:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado3"
                 placeholder="Ingresa tu ciudad"
             ></b-form-input>  
           </b-col>
-          <b-col>
+          <b-col class="ampliado2">
             * E-mail:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado4"
                 placeholder="Ingresa tu E-mail de contacto"
             ></b-form-input>  
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Región:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado3"
                 placeholder="Ingresa tu Región"
             ></b-form-input>  
           </b-col>
-          <b-col>
+          <b-col class="ampliado2">
             * Teléfono:
           </b-col>
           <b-col>
-            <b-form-input
+            <b-form-input class="ampliado4"
                 placeholder="Ingresa tu teléfono"
             ></b-form-input>  
           </b-col>
         </b-row>
         <b-row>
-          <b-col>
+          <b-col class="ampliado2">
             Sube tu foto de perfil:
           </b-col>
           <b-col>
             <b-row>
-              <b-card-img src="<a href="https:<img src="https://i.ibb.co/b66JTGg/pngegg.png" alt="Image" class="rounded-0"></b-card-img>
+              <div class="icondiv">
+                <b-card-img src="https://i.ibb.co/b66JTGg/pngegg.png" alt="Image" class="rounded-0"></b-card-img>
+              </div>
             </b-row>
             <b-row>
+              <div class="configButton">
               <b-button class="colorBoton">Subir foto</b-button>
+              </div>
             </b-row>
           </b-col>
-          <b-col>
-            <b-row>
-              <b-col>
+          <b-col class="ampliado6">
+            <b-row class="ampliado7">
+              <b-col class="ampliado4">
                 <b-input-group>
                   <b-input-group-prepend is-text>
                     <b-form-checkbox switch class="mr-n2">
@@ -146,19 +162,21 @@
                   
                 </b-input-group>
               </b-col>
-              <b-col>
+              <b-col class="ampliado5">
                 <b-card-text>
                     Declaro conocer y aceptar los términos y condiciones y la política de privacidad y seguridad.
                   </b-card-text>
               </b-col>
             </b-row>
             <b-row>
-              <b-button class="colorBoton">Guardar Cambios</b-button>
+              <div class="configButton2">
+                <b-button class="colorBoton">Guardar Cambios</b-button>
+              </div>
             </b-row>
           </b-col>
         </b-row>
-
-
+        </div>
+      </b-col>
   </div>
 
 </template>
@@ -187,5 +205,87 @@ import BusquedaForm from '../components/BusquedaForm.vue';
     height: 70px;
     width: 70px;
 
+  }
+
+  .contenedorTotal{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    border: 2px solid #1c335f;
+    
+  }
+  .contenedorNombre{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5%;
+    margin-bottom: -1%;
+    border: 2px solid #1c335f;
+    
+  }
+
+  .centrado{
+    margin-top: 1%;
+    margin-bottom: -4%;
+  }
+
+  .ampliado{
+    margin: 2%;
+  }
+
+  .ampliado2{
+    margin-bottom: 3%;
+    margin-left: -5%;
+  }
+
+  .ampliado3{
+    margin-top: -2%;
+    margin-left: -40%;
+    width: 90%;
+  }
+
+  .ampliado4{
+    margin-top: -2%;
+    margin-left: -30%;
+    width: 90%;
+  }
+
+  .ampliado5{
+    margin-top: -1%;
+    margin-left: -90%;
+    width: 99%;
+    font-size: 14px;
+  }
+
+  .ampliado6{
+    margin-top: 5%;
+  }
+
+  .ampliado7{
+    margin-left: -20%;
+  }
+
+  .nombreCol{
+    margin: 25px 0px;
+  }
+
+  .icondiv{
+    text-align: end;
+    width: 40%;
+    margin-left: -30%;
+  }
+
+  .configButton{
+    margin-left: -40%;
+    margin-top: 2%;
+    width: 80%;
+  }
+
+  .configButton2{
+    margin-left: 30%;
+    margin-top: 20%;
+    margin-bottom: 10%;
+    width: 80%;
   }
 </style>
