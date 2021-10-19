@@ -164,7 +164,8 @@
           Tarjetas de productos agregados a la lista de deseos   
         </b-row> 
       </b-card-text></b-tab>
-      <b-tab title="Cerrar Sesión" href="/"></b-tab>
+      <b-tab title="Cerrar Sesión" href="/register">
+        </b-tab>
     
     </b-tabs>
   </b-card>

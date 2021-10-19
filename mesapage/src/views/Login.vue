@@ -58,7 +58,7 @@
             ¿No tienes cuenta?
           </b-col>
           <b-col>
-            <b-link href="#foo">Regístrate
+            <b-link href="/register">Regístrate
             </b-link>
           </b-col>
           
