@@ -10,7 +10,7 @@
             </h3>
         </div>
         <div>
-            <b-button variant="outline-primary"> 
+            <b-button variant="outline-primary" href="/"> 
                 Volver al inicio
             </b-button>
             
