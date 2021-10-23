@@ -19,6 +19,7 @@ const state = {
   filter: {
     consulta: '',
     Disponible:true,
+    busDispo: false
   }
 
 }
@@ -26,13 +27,19 @@ const state = {
 //to handle state
 const getters = {
   productosFiltrados(state){
-    if(state.filter.consulta.length > 2){
-      let productos = state.productos.filter(producto => producto.disponible === state.filter.Disponible);
-      return productos.filter(producto => producto.nombre.toLowerCase().includes(state.filter.consulta));
+    let productos = state.productos.filter(producto => producto.Disponible === state.filter.Disponible);
+    
+    if(state.filter.busDispo===true){
+      console.log(state.filter.consulta);
+
+      return state.productos.filter(producto => producto.nombre.toLowerCase().includes(state.filter.consulta))
+      //return productos.filter(producto => producto.nombre.toLowerCase().includes(state.filter.consulta));
     }
-    return state.productos;
   },
-  allProducts: (state) => state.productos
+  allProducts: (state) => state.productos,
+  textoBuscado(state){
+    return state.filter.consulta;
+  }
 }
 
 //to handle actions
@@ -48,6 +55,11 @@ const actions = {
 
 //to handle mutations
 const mutations = {
+  SET_BUSDISPO(state, dispo){
+    if(dispo){
+      state.filter.busDispo = dispo;
+    }
+  },
   SET_QUERY (state, consulta){
     state.filter.consulta = consulta;
   },

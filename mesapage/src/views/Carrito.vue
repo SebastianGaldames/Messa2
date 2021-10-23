@@ -19,7 +19,7 @@
               <b-col>Sub-total</b-col>
               <b-col></b-col>
             </b-row>
-            <ProductCard></ProductCard>
+            <b-row><ProductCard></ProductCard></b-row>
             </b-card> 
           </div>
         </b-col>  
