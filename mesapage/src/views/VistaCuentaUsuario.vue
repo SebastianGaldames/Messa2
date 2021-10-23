@@ -4,171 +4,141 @@
     <NavBar>
     </NavBar>
 
+    <div class="contenedorUsuario">
     <b-row>
       <b-col>
-        aqui foto de perfil
+        <div class="icondiv">
+          <b-card-img src="https://i.ibb.co/18JfHvf/585e4beacb11b227491c3399-4.png" alt="Image" ></b-card-img>
+        </div>
       </b-col>
+      <b-col class="margenLetrasSup">
       <b-row>
         HOLA
       </b-row>
-      <b-row>
-        USUARIO5472
+      <b-row class="margenLetrasSup margenIzqSup">
+        <b>
+          USUARIO5472
+        </b>
       </b-row>
+      </b-col>
     </b-row>
+    </div>
+    <div class="contenedorTabla">
     <b-row>
       <b-card no-body>
-    <b-tabs pills card vertical>
-      <b-tab title="Datos personales" active><b-card-text>
-        <b-row>
+    <b-tabs pills card vertical  active-nav-item-class="font-weight-bold text-dark bg-light" >
+      <b-tab title="Datos personales" active ><b-card-text>
+        <b-row class="encabezado">
           Datos Personales
         </b-row>
         <b-row>
-          <b-col>Nombre:</b-col>
-          <b-col>Apellido Paterno:</b-col>
-          <b-col>Apellido Materno:</b-col>
+          <b-col class="formato1">Nombre:</b-col>
+          <b-col class="formato1">Apellido Paterno:</b-col>
+          <b-col class="formato1">Apellido Materno:</b-col>
         </b-row>
         <b-row>
-          <b-col>
-            <b-form-input
-                placeholder="Nombre"
-            ></b-form-input>  
+          <b-col class="formato2">
+            NombreUsuario  
           </b-col>
-          <b-col>
-            <b-form-input
-                placeholder="Paterno"
-            ></b-form-input>  
+          <b-col class="formato2">
+            ApellidoPaternoUsuario 
           </b-col>
-          <b-col>
-            <b-form-input
-                placeholder="Materno"
-            ></b-form-input>  
+          <b-col class="formato2">
+            ApellidoMaternoUsuario 
           </b-col>
         </b-row>
         <b-row>
               <!-- los datos mostrados aca deberian ser los de la cuenta no sujetos a modificacion -->
-          <b-col>Usuario:</b-col>
-          <b-col>Teléfono:</b-col>
-          <b-col>E-mail:</b-col>
+          <b-col class="formato3">Usuario:</b-col>
+          <b-col class="formato3">Teléfono:</b-col>
+          <b-col class="formato3">E-mail:</b-col>
         </b-row>
         <b-row>
-          <b-col>___________</b-col>
-          <b-col>___________</b-col>
-          <b-col>___________</b-col>
+          <b-col class="formato4">IDUsuario</b-col>
+          <b-col class="formato4">TelefonoUsuario</b-col>
+          <b-col class="formato4">E-mailUsuario</b-col>
         </b-row>
         <b-row align-v="end">
           <b-col cols="4">
-            <b-button class="colorBoton">Guardar Cambios</b-button>
+            <b-button class="colorBoton configBoton">Guardar Cambios</b-button>
           </b-col>
         </b-row>
       </b-card-text></b-tab>
       <b-tab title="Cambiar mi contraseña"><b-card-text>
-        <b-row>
-          <b-col>
-            imagen candado
-          </b-col>
-          <b-col>
+        <b-row class="encabezado2" >
             Cambia mi contraseña
-          </b-col>
         </b-row>
-        <b-row>
+        <b-row class="formato5">
           Contraseña actual
         </b-row>
         <b-row>
+          <div  class="aInput">
             <b-form-input
               type="password" id="text-password" aria-describedby="password-help-block"
             ></b-form-input>
+            </div>
         </b-row>
-        <b-row>
+        <b-row class="formato5">
           Nueva Contraseña
         </b-row>
         <b-row>
+            <div class="aInput">
             <b-form-input
               type="password" id="text-password" aria-describedby="password-help-block"
             ></b-form-input>
+            </div>
         </b-row>
         <b-row align-v="end">
           <b-col cols="4">
-            <b-button class="colorBoton">Cambiar contraseña</b-button>
+            <b-button class="colorBoton configBoton2">Cambiar contraseña</b-button>
           </b-col>
         </b-row>
         </b-card-text>
         </b-tab>
       <b-tab title="Mis Compras"><b-card-text>
         <b-row align-h="around">
-          <b-col cols="4">Mis Compras</b-col>
+          <b-col class="encabezado3">Mis Compras</b-col>
         </b-row>
         <b-row>
-          Tarjetas de productos comprados ligado a carrito
+          <div>
+            <b-table striped hover :items="items"></b-table>
+            </div>
         </b-row>
         <b-row align-v="end">
           <b-col cols="4">
-            <b-button class="colorBoton">Ver más compras</b-button>
-          </b-col>
-        </b-row>
-      </b-card-text></b-tab>
-      <b-tab title="Mis Medios de Pago"><b-card-text>
-        <b-row>
-          <b-col>
-            imagen tarjeta o billete
-          </b-col>
-          <b-col>
-            Mis medios de Pago
-          </b-col>
-        </b-row>
-        <b-row>
-          Tarjetas Débito  
-        </b-row>
-        <b-row>
-          <b-col>
-            imagen busqueda documento
-          </b-col>
-          <b-col>
-            no tienes tarjetas de débito disponibles
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-button pill variant="outline-secondary">+ Agregar tarjeta de débito</b-button>
-        </b-row>
-        <b-row>
-          Tarjetas Crédito  
-        </b-row>
-        <b-row>
-          <b-col>
-            imagen búsqueda documento
-          </b-col>
-          <b-col>
-            no tienes tarjetas de Crédito disponibles
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-button pill variant="outline-secondary">+ Agregar tarjeta de Crédito</b-button>
-        </b-row>
-        <b-row align-v="end">
-          <b-col cols="4">
-            <b-button class="colorBoton">Ver más compras</b-button>
+            <b-button class="colorBoton configBoton3">Ver más compras</b-button>
           </b-col>
         </b-row>
       </b-card-text></b-tab>
       <b-tab title="Lista de deseos"><b-card-text>
         <b-row>
-          <b-col>
-            Imagen corazon
-          </b-col>
-          <b-col>
-            Mi Lista de deseos
-          </b-col>
+            <div>
+            <b-card
+              title="Mi Lista de deseos"              
+              tag="article"
+              class="xl"
+            >
+            <b-row cols="6">
+              <b-col cols="4">Producto</b-col>
+              <b-col>Talla</b-col>
+              <b-col>Color</b-col>
+              <b-col></b-col>
+            </b-row>
+            <b-row><DeseoCard></DeseoCard></b-row>
+            </b-card> 
+          </div>  
         </b-row>
         <b-row>
-          Tarjetas de productos agregados a la lista de deseos   
-        </b-row> 
+            <b-button class="colorBoton configBoton4">Explorar más productos</b-button>
+        </b-row>
       </b-card-text></b-tab>
-      <b-tab title="Cerrar Sesión" href="/"></b-tab>
+      <b-tab title="Cerrar Sesión"></b-tab>
     
     </b-tabs>
   </b-card>
-    </b-row>
-    
-  
+    </b-row>  
+
+    </div>
 
   </div>
   
@@ -177,11 +147,43 @@
 </template>
 
 <script>import NavBar from '../components/NavBar.vue';
+import DeseoCard from "./DeseoCard";
 
   export default{
+    name: "VistaCuentaUsuario",
+    props: ['data'],
       components: {
-        NavBar
+        NavBar, DeseoCard
+        },
+        data() {
+          return {
+            items: [
+              { Nombre_Producto: 'Polera', Talla: 'L', Unidades: 2 },
+              { Nombre_Producto: 'Short', Talla: 'M', Unidades: 3 },
+              { Nombre_Producto: 'Pantalon', Talla: 'L', Unidades: 1 },
+              { Nombre_Producto: 'Pantalon', Talla: 'XL', Unidades: 2 }
+            ],
+
+            all:{
+              arrProduct:[
+                {
+                  nameProduct:"",
+                  color: '',
+                  description:'',
+                  price:'',
+                  quantity:'',
+                }
+              ]
+            }
+          }
+        },
+      methods: {
+        rowClass(item, type) {
+          if (!item || type !== 'row') return
+          if (item.status === 'awesome') return 'table-success'
+        }
       }
+ 
   }
 </script>
 
@@ -199,4 +201,129 @@
     width: 150px;
 
   }
+
+  .icondiv{
+    text-align: end;
+    width: 70px;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    margin-left: 1%;
+  }
+
+  .contenedorUsuario{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 1%;
+    border: transparent;
+    
+  }
+
+  .contenedorTabla{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    
+  }
+
+.color{
+  background-color: #1c335f;
+}
+
+.margenLetrasSup{
+  margin-left: -83%;
+  margin-top: 1%;
+}
+
+.margenIzq{
+  margin-left: -94%;
+}
+
+.margenIzqSup{
+  margin-left: -96%;
+}
+
+.margenIzq2{
+  margin-left: 10%;
+}
+
+.formato1{
+  margin-top: -2%;
+  margin-left: -15%;
+  font-size: 15px;
+}
+
+.formato2{
+  margin-left: -11%;
+}
+
+.formato3{
+  margin-left: -15%;
+  font-size: 15px;
+  margin-top: 1%;
+}
+
+.formato4{
+  margin-left: -11%;
+}
+
+.formato5{
+  margin-top: 1%;
+  font-size: 15px;
+}
+
+.configBoton{
+  margin-left: 270%;
+  margin-top: -5%;
+  width: 35%;
+}
+
+.configBoton2{
+  margin-left: 265%;
+  margin-top: -15%;
+  width: 40%;
+}
+
+.configBoton3{
+  margin-left: 270%;
+  margin-top: 10%;
+  width: 35%;
+}
+
+.configBoton4{
+  margin-left: 80%;
+  margin-top: 4%;
+  width: 15%;
+}
+
+.encabezado{
+  margin-left: 10%;
+  margin-bottom: 3%;
+  font-size: 20px;
+}
+
+.encabezado2{
+  margin-left: 1%;
+  font-size: 20px;
+}
+
+.encabezado3{
+  margin-left: -90%;
+  margin-bottom: 3%;
+  font-size: 20px;
+}
+
+
+.tabs-tab_active_color{
+  color: white !important;
+  background-color: #1c335f !important;
+}
+
+.aInput{
+  width: 20%;
+  margin-left: 10%;
+}
 </style>
