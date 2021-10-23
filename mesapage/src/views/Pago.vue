@@ -10,10 +10,10 @@
             </h3>
         </div>
         <div>
-            <b-button variant="success">
+            <b-button variant="success" href="/pagoAceptado">
                 Proceder con el pago
             </b-button>
-            <b-button variant="danger"> 
+            <b-button variant="danger" href="/"> 
                 Cancelar y volver al inicio
             </b-button>
             

@@ -110,7 +110,7 @@
             </b-list-group>
 
             <b-card-body>
-              <b-button class="botonFinalizar">Finalizar compra</b-button>
+              <b-button class="botonFinalizar" href="/pago">Finalizar compra</b-button>
             </b-card-body>            
           </b-card>
         </div>
