@@ -8,15 +8,32 @@
           </div>
         </b-col>
       <b-col>
-        <div id="nav" class= "float-right">
+        <div id="nav" class= "float-right" v-if="esCliente|| logueado">
           <!-- aca accesos superiores -->
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link> |
           <router-link to="/busqueda">Buscar</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
+          
+          <router-link to="/login">Iniciar Sesión</router-link> |
+          <router-link to="/register">Registrate</router-link>
+        </div>
+        <div id="nav" class= "float-right" v-if="esAdministrador|| logueado">
+          <!-- aca accesos superiores -->
+          <router-link to="/">Home</router-link> |
+          <router-link to="/blog">Danos tu Opinión</router-link> |
           <router-link to="/admin">Admin</router-link> |
           <router-link to="/login">Iniciar Sesión</router-link>
+        </div>
+        <div id="nav" class= "float-right">
+          <!-- aca accesos superiores -->
+          <router-link to="/">Home</router-link> |
+          
+          <router-link to="/blog">Danos tu Opinión</router-link> |
+          
+          <router-link to="/login">Iniciar Sesión</router-link> |
+          <router-link to="/register">Registrate</router-link>
         </div>
         </b-col>
       </b-row>
@@ -26,11 +43,31 @@
   </div>
 </template>
 
+
 <script>
 export default {
   mounted() {
     this.$store.dispatch("obtener_productos");
   },
+
+  computed:{
+    logueado(){
+      return this.$store.state.usuario;
+    },
+    esAdministrador(){
+      return this.$store.state.usuario && this.$store.usuario.rol == 'Administrador'; 
+    },
+    esCliente(){
+      return this.$store.state.usuario && this.$store.usuario.rol == 'Cliente'; 
+    },
+
+  },
+  created(){
+    this.$store.dispatch("autoLogin");
+  },
+  methods:{
+
+  }
 }
 </script>
 <style>

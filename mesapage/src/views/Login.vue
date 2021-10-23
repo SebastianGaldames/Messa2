@@ -196,3 +196,50 @@ import axios from 'axios'
     width: auto;
   }
 </style>
+
+<script>
+    import axios from 'axios'
+    // class Usuario {
+    //     constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+    //         this.nombre= nombre;
+    //         this.rut= rut;
+    //         this.nombreUsuario= nombreUsuario;
+    //         this.email= email;
+    //         this.telefono= telefono;
+    //         this.direccion= direccion;
+    //         this.numero= numero;
+    //         this.comuna= comuna;
+    //         this.ciudad= ciudad;
+    //         this.region= region;
+    //         this.password = password;
+    //         this.imagen= imagen;
+    //     }
+    //}
+
+
+    export default {
+        data() {
+            return {
+                
+                nombreUsuario:'',
+                password : ''
+            }
+        },
+         methods:{
+           busqueda(Usuario){
+               axios.post('http://localhost:4000/api/Usuario/login', {nombreUsuario: this.nombreUsuario, password: this.password})
+               .then(respuesta =>{
+                  return respuesta.data;
+               })
+               .then(data =>{
+                 this.$store.dispatch("guardarToken",data.tokenReturn);
+                 this.$router.push({name:'CuentaUsuario'});
+               })
+               .catch(function(error){
+                  console.log(error);
+               });
+            },
+         }
+        
+    }
+</script>

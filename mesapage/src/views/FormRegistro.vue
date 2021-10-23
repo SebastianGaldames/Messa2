@@ -34,6 +34,7 @@
           </b-col>
           <b-col cols="5" class="nombreCol">
             <b-form-input
+                input type="text" v-model="Usuario.nombre"
                 placeholder="Ingresa tu nombre completo"
                 input type="text" v-model="nombre"
             ></b-form-input> 

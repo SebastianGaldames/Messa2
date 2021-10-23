@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import decode from 'jwt-decode'
+import router from '../router'
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -75,8 +77,38 @@ const mutations = {
 
 
 export default new Vuex.Store({
-  state,
+  state:{
+    token:null,
+    usuario:null
+  },
   getters,
-  actions,
-  mutations,
+  actions:{
+    guardarToken({commit}, token){
+      commit("setToken", token)
+      commit("setUsuario",decode(token))
+      localStorage.setItem("token",token)
+    },
+    autoLogin({commit}){
+      let token = localStorage.getItem("token");
+      if(token){
+        commit("setToken", token)
+        commit("setUsuario", decode(token))
+      }
+      router.push({name: 'home'});
+    },
+    salir({commit}){
+      commit("setToken", null);
+      commit("setUsua", null);
+      localStorage.removeItem("token");
+      router.push({name: 'login'});
+    }
+  },
+  mutations:{
+    setToken(state, token){
+      state.token = token;
+    },
+    setUsuario(state, usuario){
+      state.usuario = usuario;
+    }
+  },
 })
