@@ -58,7 +58,7 @@
 
             <router-link to="/Carrito">
 
-              <b-img class= "margen" src="https://i.ibb.co/48HyW6f/pngegg.png" width="30" height="30">
+              <b-img class= "margen" src="https://imgur.com/Ws7fu0C.png" width="25" height="25">
               </b-img>
             
             </router-link>
