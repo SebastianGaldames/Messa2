@@ -16,7 +16,8 @@
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
           <router-link to="/admin">Admin</router-link> |
-          <router-link to="/login">Iniciar Sesión</router-link>
+          <router-link to="/login">Iniciar Sesión</router-link> |
+          <router-link to="/pago">Pago</router-link>
         </div>
         </b-col>
       </b-row>
