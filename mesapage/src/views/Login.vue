@@ -65,7 +65,6 @@
               Revisa el ingreso correcto de tus datos!
             </p>
           </b-alert>
-          
           </div>
           <div v-if ="errorM === 'Ocurrio un error con el servidor'"> 
             
@@ -80,7 +79,7 @@
             </p>
           </b-alert>
           
-
+          </div>
         </b-row>
         <div class="buttonDiv">
         <b-row>
