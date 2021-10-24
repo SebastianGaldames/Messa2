@@ -80,7 +80,7 @@
             </p>
           </b-alert>
           
-          </div>
+
         </b-row>
         <div class="buttonDiv">
         <b-row>
