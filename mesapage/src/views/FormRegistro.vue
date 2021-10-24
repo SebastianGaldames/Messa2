@@ -34,9 +34,9 @@
           </b-col>
           <b-col cols="5" class="nombreCol">
             <b-form-input
-                input type="text" v-model="Usuario.nombre"
-                placeholder="Ingresa tu nombre completo"
                 input type="text" v-model="nombre"
+                placeholder="Ingresa tu nombre completo"
+                
             ></b-form-input> 
             
             <b-form-input
@@ -288,14 +288,12 @@ import axios from 'axios'
             'password' : this.usuario.password,
             'imagen' : this.usuario.imagen,
           })
-          .then(function(response){
-            
-              usercreado = true;
-              console.log("USUARIO CREADO!!!!!!!!!!!");
-              if(usercreado){
-                this.$router.push('/').catch(err => {});
-              }
+          .then(respuesta =>{
+                  return respuesta.data;
+               }).then(data =>{
+                 this.$router.push('/').catch(err => {});
               
+
             }).catch(function(error){
                 console.log(error);
               

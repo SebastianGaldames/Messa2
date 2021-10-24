@@ -8,33 +8,47 @@
           </div>
         </b-col>
       <b-col>
-        <div id="nav" class= "float-right" v-if="esCliente|| logueado">
+        <!-- Vista Admin -->
+        <div id="nav" class= "float-right" v-if="esAdministrador && logueado">
+          <!-- aca accesos superiores -->
+          <router-link to="/">Home</router-link> |
+           <router-link to="/about">About</router-link> |
+          <router-link to="/blog">Danos tu Opinión</router-link> |
+          <router-link to="/admin">Admin</router-link> |
+          <div class="buttonLogout">
+            <b-button  @click="Logout()"  pill class="botonLogout topRow">Cerrar sesión</b-button>
+          </div>
+          
+        </div>
+        <!-- Vista Cliente -->
+        <div id="nav" class= "float-right" v-if="esCliente && logueado">
           <!-- aca accesos superiores -->
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link> |
           <router-link to="/busqueda">Buscar</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
+          <div class="buttonLogout">
+            <b-button  @click="Logout()"  pill class="botonLogout topRow">Cerrar sesión</b-button>
+          </div>
+          <div>
+            <div class="icondiv">
+              <b-card-img src="https://i.ibb.co/18JfHvf/585e4beacb11b227491c3399-4.png" alt="Image" ></b-card-img><router-link to="/CuentaUsuario">Mi perfil</router-link> |
+            </div>
+          </div>
+        </div>
+        <!-- Vista sin loguear -->
+        <div id="nav" class= "float-right"  v-if ="logueado === null ">
+          <!-- aca accesos superiores -->
+          <router-link to="/">Home</router-link > |
+           <router-link to="/about">About</router-link> |
+          <router-link to="/carrito">Carrito</router-link> |
+          <router-link to="/blog">Danos tu Opinión</router-link> |
           
           <router-link to="/login">Iniciar Sesión</router-link> |
           <router-link to="/register">Registrate</router-link>
         </div>
-        <div id="nav" class= "float-right" v-if="esAdministrador|| logueado">
-          <!-- aca accesos superiores -->
-          <router-link to="/">Home</router-link> |
-          <router-link to="/blog">Danos tu Opinión</router-link> |
-          <router-link to="/admin">Admin</router-link> |
-          <router-link to="/login">Iniciar Sesión</router-link>
-        </div>
-        <div id="nav" class= "float-right">
-          <!-- aca accesos superiores -->
-          <router-link to="/">Home</router-link> |
-          
-          <router-link to="/blog">Danos tu Opinión</router-link> |
-          
-          <router-link to="/login">Iniciar Sesión</router-link> |
-          <router-link to="/register">Registrate</router-link>
-        </div>
+        
         </b-col>
       </b-row>
     </b-container>
@@ -46,27 +60,38 @@
 
 <script>
 export default {
+
   mounted() {
     this.$store.dispatch("obtener_productos");
+  },
+  created(){
+    //console.log("Estado actual usuario: "+this.$store.state.usuario);
+    this.$store.dispatch("autoLogin");
+    //console.log("Estado actual usuario parte 2: "+this.$store.state.usuario.rol);
+    
   },
 
   computed:{
     logueado(){
+      //console.log(this.$store.state.usuario);
       return this.$store.state.usuario;
     },
+    
+    
     esAdministrador(){
-      return this.$store.state.usuario && this.$store.usuario.rol == 'Administrador'; 
+      return this.$store.state.usuario && this.$store.state.usuario.rol == 'admin'; 
     },
+
     esCliente(){
-      return this.$store.state.usuario && this.$store.usuario.rol == 'Cliente'; 
+      return this.$store.state.usuario && this.$store.state.usuario.rol == 'Cliente'; 
     },
 
   },
-  created(){
-    this.$store.dispatch("autoLogin");
-  },
+  
   methods:{
-
+    Logout(){
+      this.$store.dispatch("salir");
+    },
   }
 }
 </script>

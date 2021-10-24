@@ -51,8 +51,35 @@
         </b-row>
         <b-row>
           <div class="buttonDiv">
-            <b-button pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
             <b-button  @click="busqueda()"  pill class="botonIniciarSesion topRow">Iniciar sesión</b-button>
+          </div>
+          <div v-if ="errorM === 'No existe el usuario o las condiciones son incorrectas'"> 
+            
+            <b-alert show variant="danger">
+            <h4 class="alert-heading">Error de credenciales</h4>
+            <p>
+              Usuario o contraseña invalidos.
+            </p>
+            <hr>
+            <p class="mb-0">
+              Revisa el ingreso correcto de tus datos!
+            </p>
+          </b-alert>
+          
+          </div>
+          <div v-if ="errorM === 'Ocurrio un error con el servidor'"> 
+            
+            <b-alert show variant="danger">
+            <h4 class="alert-heading">Error de Servidor</h4>
+            <p>
+              Servidor fuera de servicio
+            </p>
+            <hr>
+            <p class="mb-0">
+              Vuelve mas tarde!
+            </p>
+          </b-alert>
+          
           </div>
         </b-row>
         <div class="buttonDiv">
@@ -72,43 +99,18 @@
 
 </template>
 
-<script>
-import NavBar from '../components/NavBar.vue';
-import axios from 'axios'
+<script>import NavBar from '../components/NavBar.vue';
+
   export default{
       components: {
         NavBar
-      },
-      data() {
-            return {
-                
-                nombreUsuario:'',
-                password : ''
-            }
-        },
-         methods:{
-           busqueda(){
-
-
-               axios.post('http://localhost:4000/api/Usuario/login', {nombreUsuario: this.nombreUsuario, password: this.password})
-               .then(respuesta =>{
-                  this.$router.push({path:'/cuentaUsuario'})
-                  .catch(err => {console.log(err)});
-                  return respuesta.data;//'password correcta'
-               })
-               
-               .catch(function(error){
-                  console.log(error);
-               });
-            },
-            
-         }
+      }
   }
 </script>
 
 <style scoped>
 .botonIniciarSesion{
-  background-color: #1c335f;
+    background-color: #1c335f;
 }
 
 .buttonDiv{
@@ -222,7 +224,9 @@ import axios from 'axios'
             return {
                 
                 nombreUsuario:'',
-                password : ''
+                password : '',
+                errorM: '',
+                
             }
         },
          methods:{
@@ -231,14 +235,28 @@ import axios from 'axios'
                .then(respuesta =>{
                   return respuesta.data;
                })
-               .then(data =>{
+               .then(data  =>{
                  this.$store.dispatch("guardarToken",data.tokenReturn);
-                 this.$router.push({name:'CuentaUsuario'});
-               })
-               .catch(function(error){
+                 console.log(data.tokenReturn);
+                 if(this.$store.state.usuario.rol == 'admin'){
+                   this.$router.push({name:'Home'});
+                 }else{
+                   this.$router.push({name:'cuentaUsuario'});
+                 };
+                 
+               }) 
+               .catch(error => {
+                 this.errorM = null;
+                 if(error.response.status == 404){
+                   this.errorM = 'No existe el usuario o las condiciones son incorrectas';
+                   console.log(this.errorM);
+                 }else{
+                   this.errorM = 'Ocurrio un error con el servidor';
+                 }
+
                   console.log(error);
-               });
-            },
+               }); 
+            }
          }
         
     }
