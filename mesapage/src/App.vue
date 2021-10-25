@@ -28,14 +28,11 @@
           <router-link to="/busqueda">Buscar</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
+          <router-link to="/CuentaUsuario">Mi perfil</router-link> | 
           <div class="buttonLogout">
             <b-button  @click="Logout()"  pill class="botonLogout topRow">Cerrar sesión</b-button>
           </div>
-          <div>
-            <div class="icondiv">
-              <b-card-img src="https://i.ibb.co/18JfHvf/585e4beacb11b227491c3399-4.png" alt="Image" ></b-card-img><router-link to="/CuentaUsuario">Mi perfil</router-link> |
-            </div>
-          </div>
+          
         </div>
         <!-- Vista sin loguear -->
         <div id="nav" class= "float-right"  v-if ="logueado === null ">
@@ -44,9 +41,10 @@
            <router-link to="/about">About</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
-          
+          <router-link to="/CuentaUsuario">Mi perfil</router-link> |  <!-- SOLO PARA PRUEBAS!!!!!!!!!!!!! -->
           <router-link to="/login">Iniciar Sesión</router-link> |
           <router-link to="/register">Registrate</router-link>
+          
         </div>
         
         </b-col>

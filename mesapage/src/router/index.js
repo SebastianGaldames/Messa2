@@ -108,7 +108,8 @@ const routes = [
     name: 'cuentaUsuario',
     meta: {
       //Administrador : true,
-      Cliente : true
+      libre: true
+      //Cliente : true
     },
 
     // route level code-splitting
