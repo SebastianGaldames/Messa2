@@ -41,7 +41,6 @@
            <router-link to="/about">About</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
-          <router-link to="/CuentaUsuario">Mi perfil</router-link> |  <!-- SOLO PARA PRUEBAS!!!!!!!!!!!!! -->
           <router-link to="/login">Iniciar Sesión</router-link> |
           <router-link to="/register">Registrate</router-link>
           
@@ -89,6 +88,7 @@ export default {
   methods:{
     Logout(){
       this.$store.dispatch("salir");
+      this.$router.push({name:'Home'});
     },
   }
 }

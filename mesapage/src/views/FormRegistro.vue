@@ -105,7 +105,7 @@
           </b-col>
           <b-col>
             <b-form-input class="ampliado3"
-                placeholder="Ingresa tu número de casa o departamento"
+                placeholder="Comuna"
                 input type="text" v-model="comuna"
             ></b-form-input>  
           </b-col>
@@ -213,7 +213,8 @@ import BusquedaForm from '../components/BusquedaForm.vue';
 import axios from 'axios'
 
     class Usuario {
-        constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+        constructor(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+            this.rol = rol;
             this.nombre= nombre;
             this.rut= rut;
             this.nombreUsuario= nombreUsuario;
@@ -232,7 +233,7 @@ import axios from 'axios'
   export default{
       data() {
               return {
-                  
+                  rol:'',
                   nombre:'',
                   rut:'',
                   nombreUsuario:'',
@@ -245,7 +246,7 @@ import axios from 'axios'
                   region:'',
                   password:'',
                   imagen:'',
-                  usuario: new Usuario(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen)
+                  usuario: new Usuario(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen)
                   
               }
           },
@@ -256,7 +257,7 @@ import axios from 'axios'
         crear(){
           let me = this;
           var usercreado = false;
-          me.usuario = new Usuario(this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
+          me.usuario = new Usuario('Cliente',this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
           this.numero,this.comuna,this.ciudad,this.region,this.password,"https://us.123rf.com/450wm/thesomeday123/thesomeday1231709/thesomeday123170900021/85622928-icono-de-perfil-de-avatar-predeterminado-marcador-de-posici%C3%B3n-de-foto-gris-vectores-de-ilustraciones.jpg?ver=6"),
           // console.log(me.usuario.nombre);
           // console.log(me.usuario.rut);
@@ -275,6 +276,7 @@ import axios from 'axios'
           
           axios.post('http://localhost:4000/api/Usuario/add',
           {
+            'rol': 'Cliente',
             'nombre': this.usuario.nombre,
             'rut' : this.usuario.rut,
             'nombreUsuario' : this.usuario.nombreUsuario,
