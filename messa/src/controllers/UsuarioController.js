@@ -1,5 +1,6 @@
 import models from "../models";
 import bcrypt from 'bcryptjs';
+import token from '../services/token';
 export default {
     add: async (req,res,next) =>{
         try{
@@ -80,7 +81,8 @@ export default {
             if(user){//existe un usuario con ese nombre de usuario
                 let match = await bcrypt.compare(req.body.password,user.password); //comparamos si son iguales las contraseñas
                 if(match){
-                    res.json('password correcta')
+                    let tokenReturn = await token.encode(user._id, user.rol, user.nombreUsuario);
+                    res.status(200).json({user, tokenReturn});
                 } else{
                     res.status(404).send({
                         message: 'password incorrecta'

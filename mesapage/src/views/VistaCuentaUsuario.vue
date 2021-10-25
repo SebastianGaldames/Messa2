@@ -100,15 +100,25 @@
           <b-col class="encabezado3">Mis Compras</b-col>
         </b-row>
         <b-row>
-          <div>
-            <b-table striped hover :items="items"></b-table>
+          <div class="col order-12 col-md-2"></div>  <!-- ¡¡CUIDADO!! -->
+          <div class="col order-12 col-md-6"> 
+            <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
+            <b-table striped hover :items="items" :fields="fields" :filter="textoBusqueda" :per-page="comprasXPagina" :current-page="pagActual">
+                     <template #cell(actions)="row">
+                        <b-button @click="verCompra(row.item)" size="sm" class="mr-1">
+                            Ver compra
+                        </b-button>
+                        
+                    </template>
+                </b-table>
+                <b-pagination v-model="pagActual" :total-rows="items.length" :per-page="comprasXPagina">
+
+                </b-pagination>
+               
             </div>
+        
         </b-row>
-        <b-row align-v="end">
-          <b-col cols="4">
-            <b-button class="colorBoton configBoton3">Ver más compras</b-button>
-          </b-col>
-        </b-row>
+        
       </b-card-text></b-tab>
       <b-tab title="Lista de deseos"><b-card-text>
         <b-row>
@@ -157,12 +167,28 @@ import DeseoCard from "./DeseoCard";
         },
         data() {
           return {
+            comprasXPagina: 10,
+            pagActual: 1,
+            textoBusqueda:'',
             items: [
-              { Nombre_Producto: 'Polera', Talla: 'L', Unidades: 2 },
-              { Nombre_Producto: 'Short', Talla: 'M', Unidades: 3 },
-              { Nombre_Producto: 'Pantalon', Talla: 'L', Unidades: 1 },
-              { Nombre_Producto: 'Pantalon', Talla: 'XL', Unidades: 2 }
+              { Compra: 'Compra 1', Fecha: '24/10/2021', NumeroBoleta: '104088724' },
+              { Compra: 'Compra 2', Fecha: '24/10/2021', NumeroBoleta: '104082724' },
             ],
+            fields: [
+                    {
+                        key: 'Compra',
+                        sortable: true
+                    },
+                    {
+                        key: 'Fecha',
+                        sortable: true
+                    },
+                    {
+                        key: 'NumeroBoleta',
+                        sortable: true
+                    },
+                    { key: 'actions', label: 'Actions' }
+                ],
 
             all:{
               arrProduct:[
@@ -181,6 +207,9 @@ import DeseoCard from "./DeseoCard";
         rowClass(item, type) {
           if (!item || type !== 'row') return
           if (item.status === 'awesome') return 'table-success'
+        },
+        verCompra(){
+
         }
       }
  
