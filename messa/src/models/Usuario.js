@@ -1,6 +1,7 @@
 import mongoosse,{Schema} from 'mongoose';
 
 const usuarioSchema = new Schema({
+    rol: { type:String,maxlength:30, required:true},
     nombre: {type:String, minlength:8, maxlength:200, required:true },
     rut: {type:String, minlength:9, maxlength:20, unique:true, required: true},
     nombreUsuario: {type:String,  minlength:8, maxlength:25, unique:true, required:true },
