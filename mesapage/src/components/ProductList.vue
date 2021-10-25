@@ -16,13 +16,18 @@
                         <div class="row">
                             <!-- Columna de producto -->
                             <div class="col">
+                                <h1>{{producto._id}}</h1>
                                 <h1>{{producto.nombre}}</h1>
+                                <h1>{{items}}</h1>
                                 <label for="">{{producto.descripcion}}</label>
                             </div>
                             <!-- Columna de precio -->
                             <div class="col  offset-md-3">
                                 <b>Precio: {{producto.precio}}</b>
-                                <button>Agregar al carro</button>  
+                                <button>Agregar al carro</button>
+                                <b-button pill @click="addToFavs(producto._id)">
+                                     <b-icon icon="heart" aria-hidden="true"></b-icon>
+                                </b-button>
                             </div>
                         </div>
                     </b-card>
@@ -37,6 +42,13 @@
     import {mapGetters} from 'vuex';
 
     export default {
+        props: ['producto'],
+        data(){
+            return{
+                idTemporal: "",
+                items: []
+            }
+        },
         computed:{
             products(){
                 return this.$store.getters.productosFiltrados
@@ -44,6 +56,13 @@
             ...mapGetters({
                 buscado : 'textoBuscado'
             })
-        }
+        },
+        methods: {
+            addToFavs(producto){ 
+                 console.log(producto)
+            }
+
+        } 
+        
     }
 </script>
