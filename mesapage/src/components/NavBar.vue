@@ -36,7 +36,6 @@
               <b-dropdown-item href="#">Camisetas</b-dropdown-item>
               <b-dropdown-item href="#">Casacas</b-dropdown-item>
               <b-dropdown-item href="#">Abrigos</b-dropdown-item>
-              <b-dropdown-item href="#">Tunicas</b-dropdown-item>
             </b-nav-item-dropdown>
             <!-- Temporada -->
             <b-nav-item-dropdown text="Temporada" right class= "letra margen">
