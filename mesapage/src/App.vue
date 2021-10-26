@@ -29,11 +29,11 @@
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
           <router-link to="/CuentaUsuario">Mi perfil</router-link> | 
-          <div class="buttonLogout">
-            <b-button  @click="Logout()"  pill class="botonLogout topRow">Cerrar sesión</b-button>
-          </div>
+          <b-button  @click="Logout()"  pill class="botonLogout topRow ">Cerrar sesión <b-icon-person></b-icon-person> </b-button>
+
           
         </div>
+        
         <!-- Vista sin loguear -->
         <div id="nav" class= "float-right"  v-if ="logueado === null ">
           <!-- aca accesos superiores -->
@@ -41,8 +41,8 @@
            <router-link to="/about">About</router-link> |
           <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
-          <router-link to="/login">Iniciar Sesión</router-link> |
-          <router-link to="/register">Registrate</router-link>
+          <router-link to="/register">Registrate</router-link>|
+          <b-button variant= "succes" router-link to="/login">Iniciar Sesión <b-icon-person-circle></b-icon-person-circle>  </b-button>
           
         </div>
         

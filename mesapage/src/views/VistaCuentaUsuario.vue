@@ -4,7 +4,7 @@
     <NavBar>
     </NavBar>
 
-    <div class="contenedorUsuario">
+    <div class="contenedorUsuario" >
     <b-row>
       <b-col>
         <div class="icondiv">
@@ -12,12 +12,9 @@
         </div>
       </b-col>
       <b-col class="margenLetrasSup">
-      <b-row>
-        HOLA
-      </b-row>
-      <b-row class="margenLetrasSup margenIzqSup">
+      <b-row class="margenLetrasSup margenIzqSup" >
         <b>
-          USUARIO5472
+          Bienvenido {{nombreUsuario}}
         </b>
       </b-row>
       </b-col>
@@ -32,37 +29,31 @@
           Datos Personales
         </b-row>
         <b-row>
-          <b-col class="formato1">Nombre:</b-col>
-          <b-col class="formato1">Apellido Paterno:</b-col>
-          <b-col class="formato1">Apellido Materno:</b-col>
+          <b-col class="formato1">Nombre: </b-col>
+          <b-col class="formato1">Usuario:</b-col>
+          <b-col class="formato1">Rut:</b-col>
+
         </b-row>
         <b-row>
-          <b-col class="formato2">
-            NombreUsuario  
-          </b-col>
-          <b-col class="formato2">
-            ApellidoPaternoUsuario 
-          </b-col>
-          <b-col class="formato2">
-            ApellidoMaternoUsuario 
-          </b-col>
+          <b-col class="formato2">{{usuarioA.nombre}}</b-col>
+          <b-col class="formato2">{{usuarioA.nombreUsuario}}</b-col>
+          <b-col class="formato4">{{usuarioA.rut}}</b-col>
+          
         </b-row>
         <b-row>
               <!-- los datos mostrados aca deberian ser los de la cuenta no sujetos a modificacion -->
-          <b-col class="formato3">Usuario:</b-col>
+          
           <b-col class="formato3">Teléfono:</b-col>
           <b-col class="formato3">E-mail:</b-col>
+          <b-col class="formato3">Direccion:</b-col>
         </b-row>
         <b-row>
-          <b-col class="formato4">IDUsuario</b-col>
-          <b-col class="formato4">TelefonoUsuario</b-col>
-          <b-col class="formato4">E-mailUsuario</b-col>
+          
+          <b-col class="formato4">{{usuarioA.telefono}}</b-col>
+          <b-col class="formato4">{{usuarioA.email}}</b-col>
+          <b-col class="formato4">{{usuarioA.direccion}}</b-col>
         </b-row>
-        <b-row align-v="end">
-          <b-col cols="4">
-            <b-button class="colorBoton configBoton">Guardar Cambios</b-button>
-          </b-col>
-        </b-row>
+
       </b-card-text></b-tab>
       <b-tab title="Cambiar mi contraseña"><b-card-text>
         <b-row class="encabezado2" >
@@ -158,18 +149,45 @@
 
 <script>import NavBar from '../components/NavBar.vue';
 import DeseoCard from "./DeseoCard";
+import axios from 'axios'
 
+
+class Usuario{
+  constructor(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+            this.rol = rol;
+            this.nombre= nombre;
+            this.rut= rut;
+            this.nombreUsuario= nombreUsuario;
+            this.email= email;
+            this.telefono= telefono;
+            this.direccion= direccion;
+            this.numero= numero;
+            this.comuna= comuna;
+            this.ciudad= ciudad;
+            this.region= region;
+            this.password = password;
+            this.imagen= imagen;
+        }
+}
   export default{
+    
     name: "VistaCuentaUsuario",
-    props: ['data'],
+      props: ['data'],
       components: {
         NavBar, DeseoCard
         },
+        
+        
+        
         data() {
           return {
+            usuarioA : new Usuario(),
+            nombreUsuario : this.$store.state.usuario.nombreUsuario,
+            id : this.$store.state.usuario._id,
             comprasXPagina: 10,
             pagActual: 1,
             textoBusqueda:'',
+            arrayUsuarios:[],
             items: [
               { Compra: 'Compra 1', Fecha: '24/10/2021', NumeroBoleta: '104088724' },
               { Compra: 'Compra 2', Fecha: '24/10/2021', NumeroBoleta: '104082724' },
@@ -200,8 +218,12 @@ import DeseoCard from "./DeseoCard";
                   quantity:'',
                 }
               ]
-            }
+            },
+            
           }
+        },
+        created(){
+          this.listar();
         },
       methods: {
         rowClass(item, type) {
@@ -209,8 +231,23 @@ import DeseoCard from "./DeseoCard";
           if (item.status === 'awesome') return 'table-success'
         },
         verCompra(){
-
-        }
+          alert("Detalle no disponible");
+        },
+        listar(){
+          let me = this;
+          console.log(me.id);
+          axios.get(`http://localhost:4000/api/Usuario/query?_id=${me.id}`).then(function (response){
+                    //console.log(response.data);
+                    me.usuarioA = response.data;
+                    //console.log(me.usuarioA);
+                    
+                }).catch(function(error){
+                    console.log(error);
+                });
+        },
+        
+        
+        
       }
  
   }
