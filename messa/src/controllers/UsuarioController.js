@@ -2,6 +2,7 @@ import models from "../models";
 import bcrypt from 'bcryptjs';
 import token from '../services/token';
 export default {
+    //Metodo para crear un usuario (registro)
     add: async (req,res,next) =>{
         try{
             req.body.password = await bcrypt.hash(req.body.password,10);
@@ -14,6 +15,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para obtener un usuario mediante _id
     query: async (req,res,next) =>{
         try {
             const reg=await models.Usuario.findOne({_id:req.query._id});
@@ -32,6 +34,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para listar a todos los usuarios registrados
     list: async (req,res,next) =>{
         try {
             const reg= await models.Usuario.find({});
@@ -62,6 +65,7 @@ export default {
             next(e);
         }
     },*/
+    //Metodo para eliminar un usuario mediante _id
     remove: async (req,res,next) =>{
         try {
             const{id} = req.params;
@@ -75,6 +79,7 @@ export default {
             next(e);
         }
     },
+    //Metodo login que busca por nombreUsuario y compara la contraseña encriptada de la BD 
     login: async (req,res,next) => {
         try{
             let user = await models.Usuario.findOne({nombreUsuario: req.body.nombreUsuario});
