@@ -50,22 +50,37 @@
                                     </textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.categoria"
-                                    placeholder="Ingrese categoria"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Categoria</a>
+                                    <b-form-select
+                                    v-model="producto.categoria"
+                                    :options="optionsCategoria"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.genero"
-                                    placeholder="Ingrese genero"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Genero</a>
+                                    <b-form-select
+                                    v-model="producto.genero"
+                                    :options="optionsGenero"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.temporada"
-                                    placeholder="Ingrese temporada"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Temporada</a>
+                                    <b-form-select
+                                    v-model="producto.temporada"
+                                    :options="optionsTemporada"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" v-model="producto.imagen"
@@ -155,7 +170,33 @@
                         sortable: true
                     },
                     { key: 'actions', label: 'Actions' }
-                ]
+                ],
+                //Opciones para temporada
+                optionsTemporada: [
+                { item: 'Primavera-Verano 2021', name: 'Primavera-Verano 2021' },
+                { item: 'Otoño-Invierno 2021', name: 'Otoño-Invierno 2021' },
+                { item: 'Primavera-Verano 2020', name: 'Primavera-Verano 2020' },
+                { item: 'Otoño-Invierno 2020', name: 'Otoño-Invierno 2020' }
+                ],
+                //Opciones para genero
+                optionsGenero: [
+                { item: 'Masculino', name: 'Masculino' },
+                { item: 'Femenino', name: 'Femenino' },
+                { item: 'Unisex', name: 'Unisex' }
+                ],
+                //Opciones para categoria
+                optionsCategoria: [
+                { item: 'Pantalon', name: 'Pantalon' },
+                { item: 'Polera', name: 'Polera' },
+                { item: 'Poleron', name: 'Poleron' },
+                { item: 'Camisa', name: 'Camisa' },
+                { item: 'Camiseta', name: 'Camiseta' },
+                { item: 'Casaca', name: 'Casaca' },
+                { item: 'Abrigo', name: 'Abrigo' },
+                { item: 'Vestido', name: 'Vestido' },
+                { item: 'Tunica', name: 'Tunica' }
+                ],
+
             }
         },
         created () {

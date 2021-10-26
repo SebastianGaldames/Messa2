@@ -25,8 +25,6 @@
           <!-- aca accesos superiores -->
           <router-link to="/">Home</router-link> |
           <router-link to="/about">About</router-link> |
-          <router-link to="/busqueda">Buscar</router-link> |
-          <router-link to="/carrito">Carrito</router-link> |
           <router-link to="/blog">Danos tu Opinión</router-link> |
           <router-link to="/CuentaUsuario">Mi perfil</router-link> | 
           <b-button  @click="Logout()"  pill class="botonLogout topRow ">Cerrar sesión <b-icon-person></b-icon-person> </b-button>

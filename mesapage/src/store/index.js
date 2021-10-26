@@ -77,6 +77,7 @@ export default new Vuex.Store({
       }else{
         console.log("No Logueado");
       }
+      //router.push({name: 'Home'});
     },
     salir({commit}){
       commit("setToken", null);
