@@ -2,13 +2,14 @@
     <div>
         <NavBar>
         </NavBar>
-        <b-row cols="3">
+        <b-row cols="2">
         <!-- Aqui va el grid de comentarios -->
         <!-- Para generar una cantidad X de comentarios -->
         <!-- Sin que sea mucho texto hacer un for de hasta 6 o 3 -->
-            <b-col v-for="i in 6">
                 <OpinionCard></OpinionCard>
-            </b-col>
+                <OpinionCard></OpinionCard>
+                <OpinionCard></OpinionCard>
+                <OpinionCard></OpinionCard>
         </b-row>
 
         <b-row class="h-line-sep" align-h="center">
@@ -27,7 +28,7 @@
                         <b-col cols="3" align-self="stretch">
                             <label for="textarea-small">Título</label>
                         </b-col>
-                        <b-col cols="3">
+                        <b-col cols="4">
                         <b-form-textarea
                             id="textarea-small"
                             size="sm"
