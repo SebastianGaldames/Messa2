@@ -193,8 +193,7 @@
                 { item: 'Camiseta', name: 'Camiseta' },
                 { item: 'Casaca', name: 'Casaca' },
                 { item: 'Abrigo', name: 'Abrigo' },
-                { item: 'Vestido', name: 'Vestido' },
-                { item: 'Tunica', name: 'Tunica' }
+                { item: 'Vestido', name: 'Vestido' }
                 ],
 
             }
