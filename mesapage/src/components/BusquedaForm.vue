@@ -14,8 +14,12 @@
 </template>
     
 <script>
-    export default{
+    import Filtros from '../components/Filtros.vue'
 
+    export default{
+        components:{
+            Filtros
+        },
         data: function() {
             return  {
                 nombre : '',
@@ -45,7 +49,9 @@
                 this.$store.commit('SET_QUERY',buscado);
                 //console.log('Tamanno de busqueda',buscado.length)
                 if(buscado.length>1){
-                    this.$router.push('/busqueda').catch(err => {})
+                    Filtros.mutations.SET_FILTRO();
+                    
+                    this.$router.push('/busqueda').catch(err => {});
                 }
                 //document.getElementsByClassName("form-control")[0].value = "";
                 
