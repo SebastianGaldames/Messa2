@@ -34,12 +34,13 @@ export default new Vuex.Store({
       consulta: "",
       Disponible:true,
       busDispo: false,
-      filtroC: "",
-      filtroG: "",
-      filtroT: "",
-      filtroP: "",
-      filtroMinP: 0,
-      filtroMaxP: 0,
+      filtroC: "", //Filtro para categoria
+      filtroG: "", //Filtro para genero
+      filtroT: "", //Filtro para temporada
+      filtroP: "", //Filtro para precio
+      filtroMinP: 0, //Filtro para precio minimo
+      filtroMaxP: 0, //Filtro para precio maximo
+      //Booleanos para comprobar si hay filtros activos
       existeFiltro: false,
       existeFiltroC: false,
       existeFiltroG: false,
@@ -65,27 +66,34 @@ export default new Vuex.Store({
         if(state.filter.existeFiltroC){
           return state.productos.filter(producto => producto.categoria.includes(state.filter.filtroC) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de genero
         else if(state.filter.existeFiltroG){
           return state.productos.filter(producto => producto.genero.includes(state.filter.filtroG) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de temporada
         else if(state.filter.existeFiltroT){
           return state.productos.filter(producto => producto.temporada.includes(state.filter.filtroT) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de precio
         else if(state.filter.existeFiltroP){
           return state.productos.filter(producto => producto.precio>state.filter.filtroMinP && producto.precio<=state.filter.filtroMaxP && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
       }
       //Caso cuando no hay busqueda ni filtro
       else{
+        //Cuando hay un filtro de categoria
         if(state.filter.existeFiltroC){
           return state.productos.filter(producto => producto.categoria.includes(state.filter.filtroC) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de genero
         else if(state.filter.existeFiltroG){
           return state.productos.filter(producto => producto.genero.includes(state.filter.filtroG) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de temporada
         else if(state.filter.existeFiltroT){
           return state.productos.filter(producto => producto.temporada.includes(state.filter.filtroT) && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
+        //Cuando hay un filtro de precio
         else if(state.filter.existeFiltroP){
           return state.productos.filter(producto => producto.precio>state.filter.filtroMinP && producto.precio<=state.filter.filtroMaxP && producto.nombre.toLowerCase().includes(state.filter.consulta));
         }
@@ -132,8 +140,9 @@ export default new Vuex.Store({
     }
   },
   mutations:{
+    //Para limpiar todos los filtros
     SET_LIMPIAR(state){
-      state.filter.filtroC = "";
+      state.filter.filtroC = ""; 
       state.filter.filtroG = "";
       state.filter.filtroT = "";
       state.filter.filtroP = "";
@@ -141,6 +150,7 @@ export default new Vuex.Store({
       state.filter.filtroMinP = 0;
       state.filter.existeFiltro = false;
     },
+    //Para filtrar por categoria
     SET_FILTROC(state, filtrado){
       state.filter.filtroC = filtrado;
       state.filter.filtroG = "";
@@ -155,6 +165,7 @@ export default new Vuex.Store({
       state.filter.existeFiltroC = true;
       
     },
+    //Para filtrar por genero
     SET_FILTROG(state, filtrado){
       state.filter.filtroC = "";
       state.filter.filtroT = "";
@@ -168,6 +179,7 @@ export default new Vuex.Store({
       state.filter.existeFiltroT = false;
       state.filter.existeFiltroG = true;
     },
+    //Para filtrar por temporada
     SET_FILTROT(state, filtrado){
       state.filter.filtroC = "";
       state.filter.filtroG = "";
@@ -181,6 +193,7 @@ export default new Vuex.Store({
       state.filter.existeFiltroC = false;
       state.filter.existeFiltroT = true;
     },
+    //Para filtrar por rango de precio
     SET_FILTROP(state, filtrado){
       state.filter.filtroC = "";
       state.filter.filtroG = "";

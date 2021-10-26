@@ -46,6 +46,8 @@
 
 <script>
     import {mapGetters} from 'vuex';
+
+    //Clase para crear un objeto precio con un minimo y maximo, ademas de un string donde se almacena el rango ($x hasta $y)
     class Precios {
         constructor(min,max,filtro){
             this.min= min;
@@ -67,10 +69,13 @@
             })
         },
         methods:{
+            //Para borrar un filtro seleccionado
             borrarFiltro(){
                 this.filtro =  "";  
                 this.$store.commit('SET_LIMPIAR');
             },
+
+            //Metodos para llamar a filtrar las distintas categorias
             agregarFiltroPantalon(){
                 this.filtro="Pantalon";
                 this.$store.commit('SET_FILTROC',this.filtro);
@@ -110,6 +115,8 @@
                 this.filtro="Vestido";
                 this.$store.commit('SET_FILTROC',this.filtro);
             },
+
+            //Metodos para llamar a filtrar los distintos generos
             agregarFiltroMasculino(){
                 this.filtro="Masculino";
                 this.$store.commit('SET_FILTROG',this.filtro);
@@ -122,6 +129,8 @@
                 this.filtro="Unisex";
                 this.$store.commit('SET_FILTROG',this.filtro);
             },
+
+            //Metodos para llamar a filtrar las disintas temporadas
             agregarFiltroPV2021(){
                 this.filtro="Primavera-Verano 2021";
                 this.$store.commit('SET_FILTROT',this.filtro);
@@ -138,6 +147,8 @@
                 this.filtro="Otoño-Invierno 2020";
                 this.$store.commit('SET_FILTROT',this.filtro);
             },
+
+            //Metodos para llamar a filtrar por rangos de precio
             agregarFiltro10k(){
                 this.filtro="$0-$10.000";
                 this.precio = new Precios(0,10000,this.filtro);
