@@ -36,13 +36,15 @@
             <b-form-input
                 input type="text" v-model="nombre"
                 placeholder="Ingresa tu nombre completo"
-                
+                id="nombretool"
             ></b-form-input> 
-            
+            <b-tooltip show target="nombretool">*Campo Obligatorio<br>Debe tener un minimo de 8 caracteres</b-tooltip>
             <b-form-input
                 placeholder="Ingresa tu rut"
                 input type="text" v-model="rut"
+                id="ruttool"
             ></b-form-input> 
+            <b-tooltip show target="ruttool">*Campo Obligatorio</b-tooltip>
           </b-col> 
         </b-row>
         
@@ -76,7 +78,9 @@
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu nombre de usuario"
                 input type="text" v-model="nombreUsuario"
+                id="nombreDeUsuariotool"
             ></b-form-input>  
+            <b-tooltip show target="nombreDeUsuariotool">*Campo Obligatorio<br>Debe tener un minimo de 8 caracteres y ser distinta a una creada</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -97,6 +101,7 @@
               input type="password" id="text-password" aria-describedby="password-help-block"
                v-model="password"
             ></b-form-input>  
+            <b-tooltip show target="text-password">*Campo Obligatorio<br>debe contener minimo 9 caracteres</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -117,6 +122,7 @@
               type="password" id="text-password2" aria-describedby="password-help-block"
               
             ></b-form-input>  
+            <b-tooltip show target="text-password2">*Campo Obligatorio<br>Debe ser igual a su clave ingresada</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -136,8 +142,10 @@
           <b-col>
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu E-mail de contacto"
-                input type="text" v-model="email"
+                input type="text" v-model="email" 
+                id = "emailtool"
             ></b-form-input>  
+            <b-tooltip show target="emailtool">*Campo Obligatorio</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -157,7 +165,9 @@
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu teléfono"
                 input type="text" v-model="telefono"
-            ></b-form-input>  
+                id = "telefonotool"
+            ></b-form-input> 
+            <b-tooltip show target="telefonotool">*Campo Obligatorio<br>debe contener 9 digitos</b-tooltip> 
           </b-col>
         </b-row>
         <b-row>
@@ -195,9 +205,22 @@
             </b-row>
             <b-row>
               <div class="configButton2">
-                <b-button  @click="crear()" class="colorBoton">Guardar Cambios</b-button>
+                <b-button  @click="crear()" class="colorBoton" id = "guardacambiostool">Guardar Cambios  </b-button>
               </div>
+              <div v-if ="errorM === 'No existe el usuario o las condiciones son incorrectas'"> 
             
+            <b-alert show variant="danger">
+            <h4 class="alert-heading">Error de credenciales</h4>
+            <p>
+              Usuario o contraseña invalidos.
+            </p>
+            <hr>
+            <p class="mb-0">
+              Revisa el ingreso correcto de tus datos!
+            </p>
+          </b-alert>
+          </div>
+            <b-tooltip show target="guardacambiostool">si todos los campos fueron rellenado de manera correcta y no existe un usuario con su mismo nombre volvera a la vista de home</b-tooltip> 
             </b-row>
           </b-col>
         </b-row>
@@ -290,7 +313,7 @@ import axios from 'axios'
 
             }).catch(function(error){
                 console.log(error);
-              
+
           });
         },
       },

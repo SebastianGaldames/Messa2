@@ -1,6 +1,6 @@
 <template>
   <div id="app">  
-    <b-container class="bv-example-row">
+    <b-container class="bv-example-row" fluid>
       <b-row align-h="between" align-v="center">
         <b-col>
           <div class= "float-left">
