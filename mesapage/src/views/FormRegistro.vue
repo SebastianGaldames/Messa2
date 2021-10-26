@@ -36,13 +36,15 @@
             <b-form-input
                 input type="text" v-model="nombre"
                 placeholder="Ingresa tu nombre completo"
-                
+                id="nombretool"
             ></b-form-input> 
-            
+            <b-tooltip show target="nombretool">*Campo Obligatorio</b-tooltip>
             <b-form-input
                 placeholder="Ingresa tu rut"
                 input type="text" v-model="rut"
+                id="ruttool"
             ></b-form-input> 
+            <b-tooltip show target="ruttool">*Campo Obligatorio</b-tooltip>
           </b-col> 
         </b-row>
         
@@ -76,7 +78,9 @@
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu nombre de usuario"
                 input type="text" v-model="nombreUsuario"
+                id="nombreDeUsuariotool"
             ></b-form-input>  
+            <b-tooltip show target="nombreDeUsuariotool">*Campo Obligatorio</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -97,6 +101,7 @@
               input type="password" id="text-password" aria-describedby="password-help-block"
                v-model="password"
             ></b-form-input>  
+            <b-tooltip show target="text-password">*Campo Obligatorio</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -117,6 +122,7 @@
               type="password" id="text-password2" aria-describedby="password-help-block"
               
             ></b-form-input>  
+            <b-tooltip show target="text-password2">*Campo Obligatorio</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
