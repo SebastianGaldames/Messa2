@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col order-12 col-md-2"></div>  <!-- ¡¡CUIDADO!! -->
+            <div class="col order-12 col-md-2"></div>  
             <div class="col order-12 col-md-6"> 
                 <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
                 <b-table striped hover :items="arrayproductos" :fields="fields" :filter="textoBusqueda" :per-page="prodXPagina" :current-page="pagActual">
@@ -125,13 +125,14 @@
                 <b-pagination v-model="pagActual" :total-rows="arrayproductos.length" :per-page="prodXPagina">
 
                 </b-pagination>
-            </div>  <!-- ¡¡CUIDADO!! -->
+            </div>  
         </div>
     </div>  
 </template>
 
 <script>
     import axios from 'axios'
+    //Objeto producto para crear o editar
     class Producto {
         constructor(nombre,precio,stockS,stockM,stockL,stockXL,descripcion,categoria,genero,temporada,imagen){
             this.nombre= nombre;
@@ -154,12 +155,12 @@
             return {
                 producto: new Producto(),
                 textoBusqueda:'',
-                prodXPagina: 10,
+                prodXPagina: 10, //Productos por pagina en la tabla
                 pagActual: 1,
-                arrayproductos:[],
+                arrayproductos:[], //Array para almacenar los productos actualizados en la BD
                 editar: false,
-                idEliminar : '',
-                idEditar: '',
+                idEliminar : '', //Para almacenar el id del producto seleccionado a eliminar
+                idEditar: '', //Para almacenar el id del producto seleccionado a editar
                 fields: [
                     {
                         key: '_id',
@@ -202,6 +203,7 @@
             this.listar()
         },
         methods: {
+            //Metodo que permite listar los productos
             listar() {
                 let me=this;
                 axios.get('http://localhost:4000/api/Producto/list').then(function (response){
@@ -211,7 +213,7 @@
                     console.log(error);
                 });
             },
-
+            //Metodo para limpiar las casillas donde agregamos o editamos productos
             limpiar(){
                 let me = this;
                 me.producto.nombre = '';
@@ -226,9 +228,11 @@
                 me.producto.temporada = '';
                 me.producto.imagen = '';
             },
+
+            //Metodo para agregar un producto desde cero
             agregarProducto() {
-                
                 let me=this;
+                //Cuando es agregar un producto
                 if(me.editar === false){
                     console.log(this.producto.nombre);
                     axios.post('http://localhost:4000/api/Producto/add',
@@ -244,17 +248,18 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
-                        //new Producto();
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
+                       //new Producto();
                         me.limpiar();
                         me.listar();
 
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
                 }
+                //Cuando es editar un producto
                 else{
                     //console.log(me.idEditar);
                     axios.put('http://localhost:4000/api/Producto/update',
@@ -271,17 +276,18 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.editar = false;
                         me.limpiar();
                         me.listar();
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
                 }
             },
+            //Metodo para obtener un producto a editar
             editarProducto(item){
                 let me=this;
                 me.editar = true;
@@ -299,17 +305,15 @@
                 me.idEliminar = item._id;
                 axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
                 )
-                .then(function(response){
+                .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.delete = false;
                         me.listar();
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                        alert('Datos no validos');
+                })
+                .catch(function(error){//Si hay un error muestra una alerta
+                    console.log(error);
+                    alert('Datos no validos');
 
-                    });
-                
-
+                });
             }
         }
     }

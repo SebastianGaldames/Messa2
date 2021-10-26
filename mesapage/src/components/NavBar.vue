@@ -46,27 +46,16 @@
             </b-nav-item-dropdown>
 
 
-            <!-- <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input> -->
-           
+            <!-- Componente BusquedaForm -->
             <busqueda-form class ="margen">
             </busqueda-form>
-            <!-- Redirecciona a la Busqueda --> 
-            <!--<router-link to="/Busqueda">-->
-            
-            <!-- <b-button id="botonBusqueda" href="Busqueda" v size="sm" class="my-2 my-sm-0" type="submit">GO</b-button> -->
-
+            <!-- Componente Carrito -->
             <router-link to="/Carrito">
-
               <b-img class= "margen" src="https://imgur.com/Ws7fu0C.png" width="25" height="25">
               </b-img>
-            
             </router-link>
             
-            
-            <!--</router-link>-->
-            
           </b-nav-form>
-
         </b-navbar-nav>
     </b-navbar>
   </div>
@@ -75,17 +64,17 @@
 
 
 <script>
-import BuscadorApp from '../components/BuscadorApp.vue'
 import BusquedaForm from '../components/BusquedaForm.vue'
 
   export default {
-    components: { BuscadorApp, BusquedaForm },
-      data() {
-        return {
-          textoBusqueda:''
-        }
+    components: {
+      BusquedaForm 
+    },
+    data() {
+      return {
+        textoBusqueda:''
+      }
     }
-
   }
 
 </script>
