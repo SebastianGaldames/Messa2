@@ -10,7 +10,7 @@
             </h3>
         </div>
         <div>
-            <b-button @click="comprA()" variant="success">
+            <b-button @click="comprA()" variant="success" href="/pagoAceptado">
                 Proceder con el pago
             </b-button>
             <b-button variant="danger" href="/"> 
