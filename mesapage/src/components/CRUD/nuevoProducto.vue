@@ -132,6 +132,7 @@
 
 <script>
     import axios from 'axios'
+    //Objeto producto para crear o editar
     class Producto {
         constructor(nombre,precio,stockS,stockM,stockL,stockXL,descripcion,categoria,genero,temporada,imagen){
             this.nombre= nombre;
@@ -154,12 +155,12 @@
             return {
                 producto: new Producto(),
                 textoBusqueda:'',
-                prodXPagina: 10,
+                prodXPagina: 10, //Productos por pagina en la tabla
                 pagActual: 1,
-                arrayproductos:[],
+                arrayproductos:[], //Array para almacenar los productos actualizados en la BD
                 editar: false,
-                idEliminar : '',
-                idEditar: '',
+                idEliminar : '', //Para almacenar el id del producto seleccionado a eliminar
+                idEditar: '', //Para almacenar el id del producto seleccionado a editar
                 fields: [
                     {
                         key: '_id',
@@ -211,7 +212,7 @@
                     console.log(error);
                 });
             },
-
+            //Metodo para limpiar las casillas donde agregamos o editamos productos
             limpiar(){
                 let me = this;
                 me.producto.nombre = '';
@@ -226,9 +227,11 @@
                 me.producto.temporada = '';
                 me.producto.imagen = '';
             },
+
+            //Metodo para agregar un producto desde cero
             agregarProducto() {
-                
                 let me=this;
+                //Cuando es agregar un producto
                 if(me.editar === false){
                     console.log(this.producto.nombre);
                     axios.post('http://localhost:4000/api/Producto/add',
@@ -255,6 +258,7 @@
                         alert('Datos no validos');
                     });
                 }
+                //Cuando es editar un producto
                 else{
                     //console.log(me.idEditar);
                     axios.put('http://localhost:4000/api/Producto/update',
@@ -282,6 +286,7 @@
                     });
                 }
             },
+            //Metodo para obtener un producto a editar
             editarProducto(item){
                 let me=this;
                 me.editar = true;
