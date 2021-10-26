@@ -223,17 +223,25 @@ class Usuario{
           }
         },
         created(){
-          this.listar();
+          this.getU();
         },
       methods: {
         rowClass(item, type) {
           if (!item || type !== 'row') return
           if (item.status === 'awesome') return 'table-success'
         },
+        /**
+         * @author Francisco Quevedo
+         * Ve los detalles de la compra seleccionada
+         */
         verCompra(){
           alert("Detalle no disponible");
         },
-        listar(){
+        /**
+         * @author Francisco Quevedo
+         * Obtiene al usuario logueado en ese instante
+         */
+        getU(){
           let me = this;
           console.log(me.id);
           axios.get(`http://localhost:4000/api/Usuario/query?_id=${me.id}`).then(function (response){
@@ -245,9 +253,6 @@ class Usuario{
                     console.log(error);
                 });
         },
-        
-        
-        
       }
  
   }

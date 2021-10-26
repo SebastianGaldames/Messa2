@@ -251,29 +251,21 @@ import axios from 'axios'
               }
           },
       methods:{
+        /**
+         * Conduce a home
+         */
         salir(){
           this.$router.push('/').catch(err => {});
         },
+        /**
+         * @author Francisco Quevedo
+         * Crea un nuevo usuario de rol 'Cliente' con los datos que toma del formulario del front y lo guarda en la base de datos
+         */
         crear(){
           let me = this;
           var usercreado = false;
           me.usuario = new Usuario('Cliente',this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
           this.numero,this.comuna,this.ciudad,this.region,this.password,"https://us.123rf.com/450wm/thesomeday123/thesomeday1231709/thesomeday123170900021/85622928-icono-de-perfil-de-avatar-predeterminado-marcador-de-posici%C3%B3n-de-foto-gris-vectores-de-ilustraciones.jpg?ver=6"),
-          // console.log(me.usuario.nombre);
-          // console.log(me.usuario.rut);
-          // console.log(me.usuario.nombreUsuario);
-          // console.log(me.usuario.email);
-          // console.log(me.usuario.telefono);
-          // console.log(me.usuario.direccion);
-          // console.log(me.usuario.numero);
-          // console.log(me.usuario.comuna);
-          // console.log(me.usuario.ciudad);
-          // console.log(me.usuario.region);
-          // console.log(me.usuario.password);
-          // console.log(me.usuario.imagen);
-
-          
-          
           axios.post('http://localhost:4000/api/Usuario/add',
           {
             'rol': 'Cliente',
@@ -300,12 +292,7 @@ import axios from 'axios'
                 console.log(error);
               
           });
-
-          
-          
-          
         },
-        
       },
       components: {
         NavBar,

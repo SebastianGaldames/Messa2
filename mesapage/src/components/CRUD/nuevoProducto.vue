@@ -290,6 +290,10 @@
                 this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
                 me.idEditar = item._id;
             },
+            /**
+             * @author Francisco Quevedo
+             * Elimina un producto seleccionado desde el CRUD de la base de datos
+             */
             eliminarProducto(item){
                 console.log(item._id);
                 let me=this;

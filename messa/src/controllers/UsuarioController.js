@@ -43,17 +43,10 @@ export default {
             next(e);
         }
     },
-    /*update: async (req,res,next) =>{
+    update: async (req,res,next) =>{
         try {
-            let pas = req.body.password;
-            const reg0 = await models.Usuario.findOne({_id:req.body._id});
-            if(pas!=reg0.password){
-                req.body.password = await bcrypt.hash(req.body.password,10);
-            }
-            const reg= await models.Usuario.findByIdAndUpdate({_id:req.body._id},{nombre:req.body.nombre,precio:req.body.precio,
-                stockS:req.body.stockS,stockM:req.body.stockM,stockL:req.body.stockL,stockXL:req.body.stockXL,
-                descripcion:req.body.descripcion,categoria:req.body.categoria,genero:req.body.genero,temporada:req.body.temporada,
-                disponible:req.body.disponible,imagen:req.body.imagen});
+            const reg0 = await models.Usuario.findOne({_id:req.body._id});  
+            const reg= await models.Usuario.findByIdAndUpdate({_id:req.body._id},{compras:req.body.compras});
                 res.status(200).json(reg);
         } catch(e){
             res.status(500).send({
@@ -61,7 +54,7 @@ export default {
             });
             next(e);
         }
-    },*/
+    },
     remove: async (req,res,next) =>{
         try {
             const{id} = req.params;
