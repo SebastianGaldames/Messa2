@@ -1,5 +1,6 @@
 import models from "../models";
 export default {
+    //Metodo para añadir un producto
     add: async (req,res,next) =>{
         try{
             const reg = await models.Producto.create(req.body);
@@ -11,6 +12,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para obtener un producto mediante _id
     query: async (req,res,next) =>{
         try {
             const reg=await models.Producto.findOne({_id:req.query._id});
@@ -29,6 +31,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para listar todos los productos actuales en la BD
     list: async (req,res,next) =>{
         try {
             const reg= await models.Producto.find({});
@@ -40,6 +43,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para actualizar un producto en concreto mediante el _id
     update: async (req,res,next) =>{
         try {
             const reg= await models.Producto.findByIdAndUpdate({_id:req.body._id},{nombre:req.body.nombre,precio:req.body.precio,
@@ -54,6 +58,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para eliminar un producto mediante _id
     remove: async (req,res,next) =>{
         try {
             const{id} = req.params;
@@ -67,6 +72,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para activar un producto
     activate: async (req,res,next) =>{
         try {
             const reg = await models.Producto.findByIdAndDelete({_id:req.body._id},{estado:1});
@@ -78,6 +84,7 @@ export default {
             next(e);
         }
     },
+    //Metodo para desactivar un producto
     deactivate: async (req,res,next) =>{
         try {
             const reg = await models.Producto.findByIdAndDelete({_id:req.body._id},{estado:0});
