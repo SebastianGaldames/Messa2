@@ -40,11 +40,24 @@
             newColor: this.data.color,                      
             newDescription: this.data.description,
             newPrice: this.data.price,
-            newQuantity: this.data.head               
+            newQuantity: this.data.head,
+            producto: [],             
       }
     },
+    created(){
+    this.listarinfoProducto();
+    },
     methods:{
-       //Aca se agregaran los productos       
+      listarinfoProducto(){
+      this.axios.get('producto')
+      .then((response) => {
+        // console.log(response.data)
+        this.producto = response.data;
+      })
+      .catch((e)=>{
+        console.log('error' + e);
+      })
+    }       
     }      
   }
 

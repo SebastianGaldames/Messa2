@@ -16,18 +16,14 @@
                         <div class="row">
                             <!-- Columna de producto -->
                             <div class="col">
-                                <h1>{{producto._id}}</h1>
                                 <h1>{{producto.nombre}}</h1>
-                                <h1>{{items}}</h1>
                                 <label for="">{{producto.descripcion}}</label>
                             </div>
                             <!-- Columna de precio -->
                             <div class="col  offset-md-3">
                                 <b>Precio: {{producto.precio}}</b>
                                 <button>Agregar al carro</button>
-                                <b-button pill variant="success" @click="addToFavs(producto._id)">
-                                     <b-icon  v-bind:icon="text">heart</b-icon>
-                                </b-button>
+                                    <b-icon @click="addToFavs(producto._id)" icon="heart"></b-icon>
                             </div>
                         </div>
                     </b-card>
@@ -60,6 +56,7 @@
             })
         },
         methods: {
+            //Se agrega el producto a una lista, se envía un alert para notificar que el producto fue agregado o quitado a la lista de deseos
             addToFavs(producto){                            
                 if(this.items.find(producto => producto._id==producto)){
                     this.items = this.items.filter(function( obj ) {
