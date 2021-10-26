@@ -62,12 +62,22 @@ export default new Vuex.Store({
       })
     },
 
-
+    /**
+     * @author Francisco Quevedo
+     * @param {*} {commit}
+     * @param {*} token 
+     * Guarda el token que contiene el nombre del usuario conectado y su rol
+     */
     guardarToken({commit}, token){
       commit("setToken", token)
       commit("setUsuario",decode(token))
       localStorage.setItem("token",token)
     },
+    /**
+     * @author Francisco Quevedo
+     * @param {*} {commit} 
+     * Mantiene la sesion iniciada del usuario encontrado en el token
+     */
     autoLogin({commit}){
       let token = localStorage.getItem("token");
       //console.log(token);
@@ -78,8 +88,12 @@ export default new Vuex.Store({
       }else{
         console.log("No Logueado");
       }
-      //router.push({name: 'Home'});
     },
+    /**
+     * @author Francisco Quevedo
+     * @param {*} {commit}
+     * Desloguea al usuario en linea borrando el token guardado 
+     */
     salir({commit}){
       commit("setToken", null);
       commit("setUsuario", null);
@@ -104,7 +118,7 @@ export default new Vuex.Store({
       state.productos = productos
       //console.log(state.productos)
     },
-
+    
     setToken(state, token){
       state.token = token;
     },
