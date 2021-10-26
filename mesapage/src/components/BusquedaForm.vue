@@ -37,24 +37,28 @@
             }
         },
        methods : {
-            // Creating function
+            //Metodo para buscar
             irBuscar(){
                 //this.nombre='';
                 this.buscar=true;
+                //Marcamos que se puede buscar
                 this.$store.commit('SET_BUSDISPO',this.buscar);
 
+                //Se obtiene lo que se va a buscar
                 var buscado=document.getElementById("busqueda").value;
+                //Hacemos que el texto se transforme completamente a minusculas
                 buscado = buscado.toLowerCase();
                 //console.log('Esto se va a buscar:',buscado);
+                //Seteamos lo que se va Buscar
                 this.$store.commit('SET_QUERY',buscado);
                 //console.log('Tamanno de busqueda',buscado.length)
                 if(buscado.length>=0){
                     //Filtros.methods.borrarFiltro();
+                    //Limpiamos los filtros cuando se hace una nueva busqueda
                     this.$store.commit('SET_LIMPIAR');
                     this.$router.push('/busqueda').catch(err => {});
                 }
                 //document.getElementsByClassName("form-control")[0].value = "";
-                
             }
         }
     }

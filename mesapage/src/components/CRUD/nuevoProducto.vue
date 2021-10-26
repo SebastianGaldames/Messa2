@@ -109,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col order-12 col-md-2"></div>  <!-- ¡¡CUIDADO!! -->
+            <div class="col order-12 col-md-2"></div>  
             <div class="col order-12 col-md-6"> 
                 <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
                 <b-table striped hover :items="arrayproductos" :fields="fields" :filter="textoBusqueda" :per-page="prodXPagina" :current-page="pagActual">
@@ -125,7 +125,7 @@
                 <b-pagination v-model="pagActual" :total-rows="arrayproductos.length" :per-page="prodXPagina">
 
                 </b-pagination>
-            </div>  <!-- ¡¡CUIDADO!! -->
+            </div>  
         </div>
     </div>  
 </template>
@@ -203,6 +203,7 @@
             this.listar()
         },
         methods: {
+            //Metodo que permite listar los productos
             listar() {
                 let me=this;
                 axios.get('http://localhost:4000/api/Producto/list').then(function (response){
@@ -247,13 +248,13 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
-                        //new Producto();
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
+                       //new Producto();
                         me.limpiar();
                         me.listar();
 
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
@@ -275,12 +276,12 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.editar = false;
                         me.limpiar();
                         me.listar();
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
@@ -304,17 +305,15 @@
                 me.idEliminar = item._id;
                 axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
                 )
-                .then(function(response){
+                .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.delete = false;
                         me.listar();
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                        alert('Datos no validos');
+                })
+                .catch(function(error){//Si hay un error muestra una alerta
+                    console.log(error);
+                    alert('Datos no validos');
 
-                    });
-                
-
+                });
             }
         }
     }

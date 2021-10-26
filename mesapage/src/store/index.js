@@ -100,12 +100,15 @@ export default new Vuex.Store({
         return state.productos;
       }
     },
+    //Permite mostrar todos los productos
     allProducts: (state) => state.productos,
+    //Muestra el texto buscado
     textoBuscado(state){
       return state.filter.consulta;
     }
   },
   actions:{
+    //Obtenemos los productos de la base de datos
     obtener_productos({ commit }) {
       axios.get('http://localhost:4000/api/Producto/list')
           .then(response => {
@@ -221,23 +224,25 @@ export default new Vuex.Store({
       state.filter.existeFiltroC = false;
       state.filter.existeFiltroT = false;
     },
+    //Se hace un set para indicar que el buscador esta disponible
     SET_BUSDISPO(state, dispo){
       if(dispo){
         state.filter.busDispo = dispo;
       }
     },
+    //Se hace un set de lo que se desea buscar
     SET_QUERY (state, consulta){
       state.filter.consulta = consulta;
     },
     SET_DISPONIBLE (state){
       state.filter.Disponible =true;  
     },
+    //Set de los productos
     SET_PRODUCTOS(state, productos) {
       //console.log(productos)
       state.productos = productos
       //console.log(state.productos)
     },
-    
     setToken(state, token){
       state.token = token;
     },
