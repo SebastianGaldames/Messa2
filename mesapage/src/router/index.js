@@ -57,7 +57,6 @@ const routes = [
     name: 'Admin',
     meta: {
       admin : true,
-      //Cliente : true
     },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -107,8 +106,7 @@ const routes = [
     name: 'cuentaUsuario',
     meta: {
       //Administrador : true,
-      libre: true
-      //Cliente : true
+      Cliente : true
     },
 
     // route level code-splitting
@@ -121,6 +119,9 @@ const routes = [
   {
     path: '/pago',
     name: 'pago',
+    meta: {
+      Cliente : true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -130,6 +131,9 @@ const routes = [
   {
     path: '/pagoAceptado',
     name: 'pagoAceptado',
+    meta: {
+      Cliente : true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -144,6 +148,11 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+/**
+ * @author Francisco Quevedo
+ * Dependiendo del rol del usuario conectado da accesos a rutas seleccionadas para ese rol
+ * las rutas con meta: libre estan disponibles para usuarios logueados y visitantes anonimos.
+ */
 router.beforeEach((to, from,next)=> {
   if(to.matched.some(record => record.meta.libre)){
     next();

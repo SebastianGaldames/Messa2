@@ -4,10 +4,12 @@
     <NavBar>
     </NavBar>
     <Carrousel>
-    </Carrousel>
+    </Carrousel> 
 
-  </div>
-  
+
+  </div> 
+
+
   
 
 </template>
@@ -21,4 +23,4 @@
         NavBar,Carrousel
       }
   }
-</script>
+</script> 

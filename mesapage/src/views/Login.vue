@@ -200,23 +200,6 @@
 
 <script>
     import axios from 'axios'
-    // class Usuario {
-    //     constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
-    //         this.nombre= nombre;
-    //         this.rut= rut;
-    //         this.nombreUsuario= nombreUsuario;
-    //         this.email= email;
-    //         this.telefono= telefono;
-    //         this.direccion= direccion;
-    //         this.numero= numero;
-    //         this.comuna= comuna;
-    //         this.ciudad= ciudad;
-    //         this.region= region;
-    //         this.password = password;
-    //         this.imagen= imagen;
-    //     }
-    //}
-
 
     export default {
         data() {
@@ -229,6 +212,11 @@
             }
         },
          methods:{
+           /**
+            * @author Francisco Quevedo
+            * Busca si existe un usuario en la base de datos con los parametros tomados del front
+            * si lo encuentra guarda un token que contiene el rol, nombre usuario y id
+            */
            busqueda(Usuario){
                axios.post('http://localhost:4000/api/Usuario/login', {nombreUsuario: this.nombreUsuario, password: this.password})
                .then(respuesta =>{
