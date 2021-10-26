@@ -41,11 +41,10 @@
             Filtros
         },
         computed:{
-            products(){
-                return this.$store.getters.productosFiltrados
-            },
+            
             ...mapGetters({
-                buscado : 'textoBuscado'
+                buscado : 'textoBuscado',
+                products: 'productosFiltrados'
             })
         }
     }

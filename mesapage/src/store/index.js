@@ -21,30 +21,31 @@ var productos = () =>{
 
 export default new Vuex.Store({
 
-  
-  
   state:{
+
     token:null,
     usuario:null,
 
     products: [],
     
     productos: productos(),
+  
     filter: {
-    consulta: '',
-    Disponible:true,
-    busDispo: false
-  }
+      consulta: "",
+      Disponible:true,
+      busDispo: false
+    }
+  
   },
   getters :{
     productosFiltrados(state){
-      let productos = state.productos.filter(producto => producto.Disponible === state.filter.Disponible);
       
       if(state.filter.busDispo===true){
-        console.log(state.filter.consulta);
-  
         return state.productos.filter(producto => producto.nombre.toLowerCase().includes(state.filter.consulta))
         //return productos.filter(producto => producto.nombre.toLowerCase().includes(state.filter.consulta));
+      }
+      else{
+        return state.productos;
       }
     },
     allProducts: (state) => state.productos,
