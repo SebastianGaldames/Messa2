@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import store from '../store'
+
 
 Vue.use(VueRouter)
 
@@ -8,19 +10,30 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: Home
+    component: Home,
+    meta: {
+      libre: true
+    }
+  
   },
   {
     path: '/about',
     name: 'About',
+    meta: {
+      libre:true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
+    
   {
     path: '/busqueda',
     name: 'Busqueda',
+    meta: {
+      libre:true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -30,6 +43,9 @@ const routes = [
   {
     path: '/carrito',
     name: 'Carrito',
+    meta: {
+      libre : true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -39,6 +55,9 @@ const routes = [
   {
     path: '/admin',
     name: 'Admin',
+    meta: {
+      admin : true,
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -48,6 +67,9 @@ const routes = [
   {
     path: '/blog',
     name: 'Blog',
+    meta: {
+      libre:true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -58,6 +80,9 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
+    meta: {
+      libre:true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -67,6 +92,9 @@ const routes = [
   {
     path: '/register',
     name: 'Registro',
+    meta: {
+      libre:true
+    },
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -76,12 +104,42 @@ const routes = [
   {
     path: '/CuentaUsuario',
     name: 'cuentaUsuario',
+    meta: {
+      //Administrador : true,
+      Cliente : true
+    },
+
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/VistaCuentaUsuario.vue')
 
   },
+  ,
+  {
+    path: '/pago',
+    name: 'pago',
+    meta: {
+      Cliente : true
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/Pago.vue')
+
+  },
+  {
+    path: '/pagoAceptado',
+    name: 'pagoAceptado',
+    meta: {
+      Cliente : true
+    },
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ '../views/PagoAceptado.vue')
+
+  }
 
 ]
 
@@ -90,5 +148,24 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
+/**
+ * @author Francisco Quevedo
+ * Dependiendo del rol del usuario conectado da accesos a rutas seleccionadas para ese rol
+ * las rutas con meta: libre estan disponibles para usuarios logueados y visitantes anonimos.
+ */
+router.beforeEach((to, from,next)=> {
+  if(to.matched.some(record => record.meta.libre)){
+    next();
+  }else if(store.state.usuario && store.state.usuario.rol == 'admin'){
+    if(to.matched.some(record => record.meta.admin)){
+      next();
+    };
 
+  } else if(store.state.usuario && store.state.usuario.rol == 'Cliente'){
+    if(to.matched.some(record => record.meta.Cliente)){
+      next();
+    };
+  }
+  
+})
 export default router

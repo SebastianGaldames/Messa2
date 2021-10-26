@@ -50,22 +50,37 @@
                                     </textarea>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.categoria"
-                                    placeholder="Ingrese categoria"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Categoria</a>
+                                    <b-form-select
+                                    v-model="producto.categoria"
+                                    :options="optionsCategoria"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.genero"
-                                    placeholder="Ingrese genero"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Genero</a>
+                                    <b-form-select
+                                    v-model="producto.genero"
+                                    :options="optionsGenero"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" v-model="producto.temporada"
-                                    placeholder="Ingrese temporada"
-                                    class="form-control"
-                                    style="width : 330px; heigth : 5px">
+                                    <a>Temporada</a>
+                                    <b-form-select
+                                    v-model="producto.temporada"
+                                    :options="optionsTemporada"
+                                    class="mb-3"
+                                    value-field="item"
+                                    text-field="name"
+                                    disabled-field="notEnabled"
+                                    ></b-form-select>
                                 </div>
                                 <div class="form-group">
                                     <input type="text" v-model="producto.imagen"
@@ -94,7 +109,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col order-12 col-md-2"></div>  <!-- ¡¡CUIDADO!! -->
+            <div class="col order-12 col-md-2"></div>  
             <div class="col order-12 col-md-6"> 
                 <b-form-input id="formulario" v-model="textoBusqueda" size="sm" class="mr-sm-2" placeholder="Buscar"></b-form-input>
                 <b-table striped hover :items="arrayproductos" :fields="fields" :filter="textoBusqueda" :per-page="prodXPagina" :current-page="pagActual">
@@ -110,13 +125,14 @@
                 <b-pagination v-model="pagActual" :total-rows="arrayproductos.length" :per-page="prodXPagina">
 
                 </b-pagination>
-            </div>  <!-- ¡¡CUIDADO!! -->
+            </div>  
         </div>
     </div>  
 </template>
 
 <script>
     import axios from 'axios'
+    //Objeto producto para crear o editar
     class Producto {
         constructor(nombre,precio,stockS,stockM,stockL,stockXL,descripcion,categoria,genero,temporada,imagen){
             this.nombre= nombre;
@@ -139,12 +155,12 @@
             return {
                 producto: new Producto(),
                 textoBusqueda:'',
-                prodXPagina: 10,
+                prodXPagina: 10, //Productos por pagina en la tabla
                 pagActual: 1,
-                arrayproductos:[],
+                arrayproductos:[], //Array para almacenar los productos actualizados en la BD
                 editar: false,
-                idEliminar : '',
-                idEditar: '',
+                idEliminar : '', //Para almacenar el id del producto seleccionado a eliminar
+                idEditar: '', //Para almacenar el id del producto seleccionado a editar
                 fields: [
                     {
                         key: '_id',
@@ -155,13 +171,39 @@
                         sortable: true
                     },
                     { key: 'actions', label: 'Actions' }
-                ]
+                ],
+                //Opciones para temporada
+                optionsTemporada: [
+                { item: 'Primavera-Verano 2021', name: 'Primavera-Verano 2021' },
+                { item: 'Otoño-Invierno 2021', name: 'Otoño-Invierno 2021' },
+                { item: 'Primavera-Verano 2020', name: 'Primavera-Verano 2020' },
+                { item: 'Otoño-Invierno 2020', name: 'Otoño-Invierno 2020' }
+                ],
+                //Opciones para genero
+                optionsGenero: [
+                { item: 'Masculino', name: 'Masculino' },
+                { item: 'Femenino', name: 'Femenino' },
+                { item: 'Unisex', name: 'Unisex' }
+                ],
+                //Opciones para categoria
+                optionsCategoria: [
+                { item: 'Pantalon', name: 'Pantalon' },
+                { item: 'Polera', name: 'Polera' },
+                { item: 'Poleron', name: 'Poleron' },
+                { item: 'Camisa', name: 'Camisa' },
+                { item: 'Camiseta', name: 'Camiseta' },
+                { item: 'Casaca', name: 'Casaca' },
+                { item: 'Abrigo', name: 'Abrigo' },
+                { item: 'Vestido', name: 'Vestido' }
+                ],
+
             }
         },
         created () {
             this.listar()
         },
         methods: {
+            //Metodo que permite listar los productos
             listar() {
                 let me=this;
                 axios.get('http://localhost:4000/api/Producto/list').then(function (response){
@@ -171,7 +213,7 @@
                     console.log(error);
                 });
             },
-
+            //Metodo para limpiar las casillas donde agregamos o editamos productos
             limpiar(){
                 let me = this;
                 me.producto.nombre = '';
@@ -186,9 +228,11 @@
                 me.producto.temporada = '';
                 me.producto.imagen = '';
             },
+
+            //Metodo para agregar un producto desde cero
             agregarProducto() {
-                
                 let me=this;
+                //Cuando es agregar un producto
                 if(me.editar === false){
                     console.log(this.producto.nombre);
                     axios.post('http://localhost:4000/api/Producto/add',
@@ -204,17 +248,18 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
-                        //new Producto();
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
+                       //new Producto();
                         me.limpiar();
                         me.listar();
 
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
                 }
+                //Cuando es editar un producto
                 else{
                     //console.log(me.idEditar);
                     axios.put('http://localhost:4000/api/Producto/update',
@@ -231,17 +276,18 @@
                     'temporada':this.producto.temporada,
                     'imagen':this.producto.imagen
                     })
-                    .then(function(response){
+                    .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.editar = false;
                         me.limpiar();
                         me.listar();
                     })
-                    .catch(function(error){
+                    .catch(function(error){//Si hay un error muestra una alerta
                         console.log(error);
                         alert('Datos no validos');
                     });
                 }
             },
+            //Metodo para obtener un producto a editar
             editarProducto(item){
                 let me=this;
                 me.editar = true;
@@ -249,23 +295,25 @@
                 this.producto = new Producto(item.nombre,item.precio,item.stockS,item.stockM,item.stockL,item.stockXL,item.descripcion,item.categoria,item.genero,item.temporada,item.imagen);
                 me.idEditar = item._id;
             },
+            /**
+             * @author Francisco Quevedo
+             * Elimina un producto seleccionado desde el CRUD de la base de datos
+             */
             eliminarProducto(item){
                 console.log(item._id);
                 let me=this;
                 me.idEliminar = item._id;
                 axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
                 )
-                .then(function(response){
+                .then(function(response){//Si responde correctamente se llaman a los siguientes metodos
                         me.delete = false;
                         me.listar();
-                    })
-                    .catch(function(error){
-                        console.log(error);
-                        alert('Datos no validos');
+                })
+                .catch(function(error){//Si hay un error muestra una alerta
+                    console.log(error);
+                    alert('Datos no validos');
 
-                    });
-                
-
+                });
             }
         }
     }

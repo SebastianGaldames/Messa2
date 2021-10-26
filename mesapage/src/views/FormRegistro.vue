@@ -34,14 +34,17 @@
           </b-col>
           <b-col cols="5" class="nombreCol">
             <b-form-input
-                placeholder="Ingresa tu nombre completo"
                 input type="text" v-model="nombre"
+                placeholder="Ingresa tu nombre completo"
+                id="nombretool"
             ></b-form-input> 
-            
+            <b-tooltip show target="nombretool">*Campo Obligatorio<br>Debe tener un minimo de 8 caracteres</b-tooltip>
             <b-form-input
                 placeholder="Ingresa tu rut"
                 input type="text" v-model="rut"
+                id="ruttool"
             ></b-form-input> 
+            <b-tooltip show target="ruttool">*Campo Obligatorio</b-tooltip>
           </b-col> 
         </b-row>
         
@@ -75,7 +78,9 @@
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu nombre de usuario"
                 input type="text" v-model="nombreUsuario"
+                id="nombreDeUsuariotool"
             ></b-form-input>  
+            <b-tooltip show target="nombreDeUsuariotool">*Campo Obligatorio<br>Debe tener un minimo de 8 caracteres y ser distinta a una creada</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -96,6 +101,7 @@
               input type="password" id="text-password" aria-describedby="password-help-block"
                v-model="password"
             ></b-form-input>  
+            <b-tooltip show target="text-password">*Campo Obligatorio<br>debe contener minimo 9 caracteres</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -104,7 +110,7 @@
           </b-col>
           <b-col>
             <b-form-input class="ampliado3"
-                placeholder="Ingresa tu número de casa o departamento"
+                placeholder="Comuna"
                 input type="text" v-model="comuna"
             ></b-form-input>  
           </b-col>
@@ -116,6 +122,7 @@
               type="password" id="text-password2" aria-describedby="password-help-block"
               
             ></b-form-input>  
+            <b-tooltip show target="text-password2">*Campo Obligatorio<br>Debe ser igual a su clave ingresada</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -135,8 +142,10 @@
           <b-col>
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu E-mail de contacto"
-                input type="text" v-model="email"
+                input type="text" v-model="email" 
+                id = "emailtool"
             ></b-form-input>  
+            <b-tooltip show target="emailtool">*Campo Obligatorio</b-tooltip>
           </b-col>
         </b-row>
         <b-row>
@@ -156,7 +165,9 @@
             <b-form-input class="ampliado4"
                 placeholder="Ingresa tu teléfono"
                 input type="text" v-model="telefono"
-            ></b-form-input>  
+                id = "telefonotool"
+            ></b-form-input> 
+            <b-tooltip show target="telefonotool">*Campo Obligatorio<br>debe contener 9 digitos</b-tooltip> 
           </b-col>
         </b-row>
         <b-row>
@@ -194,9 +205,22 @@
             </b-row>
             <b-row>
               <div class="configButton2">
-                <b-button  @click="crear()" class="colorBoton">Guardar Cambios</b-button>
+                <b-button  @click="crear()" class="colorBoton" id = "guardacambiostool">Guardar Cambios  </b-button>
               </div>
+              <div v-if ="errorM === 'No existe el usuario o las condiciones son incorrectas'"> 
             
+            <b-alert show variant="danger">
+            <h4 class="alert-heading">Error de credenciales</h4>
+            <p>
+              Usuario o contraseña invalidos.
+            </p>
+            <hr>
+            <p class="mb-0">
+              Revisa el ingreso correcto de tus datos!
+            </p>
+          </b-alert>
+          </div>
+            <b-tooltip show target="guardacambiostool">si todos los campos fueron rellenado de manera correcta y no existe un usuario con su mismo nombre volvera a la vista de home</b-tooltip> 
             </b-row>
           </b-col>
         </b-row>
@@ -212,7 +236,8 @@ import BusquedaForm from '../components/BusquedaForm.vue';
 import axios from 'axios'
 
     class Usuario {
-        constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+        constructor(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
+            this.rol = rol;
             this.nombre= nombre;
             this.rut= rut;
             this.nombreUsuario= nombreUsuario;
@@ -231,7 +256,7 @@ import axios from 'axios'
   export default{
       data() {
               return {
-                  
+                  rol:'',
                   nombre:'',
                   rut:'',
                   nombreUsuario:'',
@@ -244,36 +269,29 @@ import axios from 'axios'
                   region:'',
                   password:'',
                   imagen:'',
-                  usuario: new Usuario(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen)
+                  usuario: new Usuario(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen)
                   
               }
           },
       methods:{
+        /**
+         * Conduce a home
+         */
         salir(){
           this.$router.push('/').catch(err => {});
         },
+        /**
+         * @author Francisco Quevedo
+         * Crea un nuevo usuario de rol 'Cliente' con los datos que toma del formulario del front y lo guarda en la base de datos
+         */
         crear(){
           let me = this;
           var usercreado = false;
-          me.usuario = new Usuario(this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
+          me.usuario = new Usuario('Cliente',this.nombre,this.rut,this.nombreUsuario,this.email,this.telefono,this.direccion,
           this.numero,this.comuna,this.ciudad,this.region,this.password,"https://us.123rf.com/450wm/thesomeday123/thesomeday1231709/thesomeday123170900021/85622928-icono-de-perfil-de-avatar-predeterminado-marcador-de-posici%C3%B3n-de-foto-gris-vectores-de-ilustraciones.jpg?ver=6"),
-          // console.log(me.usuario.nombre);
-          // console.log(me.usuario.rut);
-          // console.log(me.usuario.nombreUsuario);
-          // console.log(me.usuario.email);
-          // console.log(me.usuario.telefono);
-          // console.log(me.usuario.direccion);
-          // console.log(me.usuario.numero);
-          // console.log(me.usuario.comuna);
-          // console.log(me.usuario.ciudad);
-          // console.log(me.usuario.region);
-          // console.log(me.usuario.password);
-          // console.log(me.usuario.imagen);
-
-          
-          
           axios.post('http://localhost:4000/api/Usuario/add',
           {
+            'rol': 'Cliente',
             'nombre': this.usuario.nombre,
             'rut' : this.usuario.rut,
             'nombreUsuario' : this.usuario.nombreUsuario,
@@ -287,24 +305,17 @@ import axios from 'axios'
             'password' : this.usuario.password,
             'imagen' : this.usuario.imagen,
           })
-          .then(function(response){
-            
-              usercreado = true;
-              console.log("USUARIO CREADO!!!!!!!!!!!");
-              if(usercreado){
-                this.$router.push('/').catch(err => {});
-              }
+          .then(respuesta =>{
+                  return respuesta.data;
+               }).then(data =>{
+                 this.$router.push('/').catch(err => {});
               
+
             }).catch(function(error){
                 console.log(error);
-              
-          });
 
-          
-          
-          
+          });
         },
-        
       },
       components: {
         NavBar,
