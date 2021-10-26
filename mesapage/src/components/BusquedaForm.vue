@@ -48,9 +48,9 @@
                 //console.log('Esto se va a buscar:',buscado);
                 this.$store.commit('SET_QUERY',buscado);
                 //console.log('Tamanno de busqueda',buscado.length)
-                if(buscado.length>1){
-                    Filtros.mutations.SET_FILTRO();
-                    
+                if(buscado.length>=0){
+                    //Filtros.methods.borrarFiltro();
+                    this.$store.commit('SET_LIMPIAR');
                     this.$router.push('/busqueda').catch(err => {});
                 }
                 //document.getElementsByClassName("form-control")[0].value = "";
