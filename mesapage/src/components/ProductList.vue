@@ -1,12 +1,12 @@
 <template>
-    
-
     <div>
-        <div class="align-self-start">
-            <label for="">Resultado Busqueda:{{buscado}}</label>
-        </div>
+
+        <p class="separador label font-weight-normal">Resultado Busqueda:</p>
+        <p class="label font-italic" style="font-size:30px">"{{buscado}}" </p>
+        
+        <filtros> </filtros>
         <!-- Fila de tarjetas -->
-        <div class="row justify-content-md-left">
+        <div class="row">
             <!-- Columna de tarjetas -->
             <div class="col-md-5 ml-xl-5" v-for="producto in products" :key="producto.id">
                 <div class="mt-5">
@@ -35,8 +35,11 @@
 
 <script>
     import {mapGetters} from 'vuex';
-
+    import Filtros from '../components/Filtros.vue'
     export default {
+        components:{
+            Filtros
+        },
         computed:{
             products(){
                 return this.$store.getters.productosFiltrados
@@ -47,3 +50,21 @@
         }
     }
 </script>
+
+<style scoped>
+
+    .row{
+        margin-left: 7%;
+        justify-content: md-left;
+    }
+    .label{
+        text-align: left !important;
+        margin-left: 189px;
+    }
+    .separador{
+        margin-top: 1.3%;
+        margin-bottom: 0; 
+    }
+
+
+</style>
