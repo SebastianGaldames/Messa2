@@ -1,9 +1,9 @@
 <template>
     <div>
-        <nav-bar>
-
-        </nav-bar>
+        <!-- Llamamos al componente navbar -->
+        <nav-bar></nav-bar>
         <div>        
+            <!-- Llamamos al componente que muestra la lista de productos -->
             <product-list></product-list>
         </div>
     </div>
@@ -13,13 +13,11 @@
 <script>
            
     import ProductList from '../components/ProductList.vue';
-    import BuscadorApp from '../components/BuscadorApp.vue';
-import NavBar from '../components/NavBar.vue';
-
+    import NavBar from '../components/NavBar.vue';
+    
     export default{
         components: {
-            ProductList,BuscadorApp,
-                NavBar
+            ProductList,NavBar
         }
     }
 </script>
