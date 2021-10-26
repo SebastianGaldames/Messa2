@@ -25,8 +25,8 @@
                             <div class="col  offset-md-3">
                                 <b>Precio: {{producto.precio}}</b>
                                 <button>Agregar al carro</button>
-                                <b-button pill @click="addToFavs(producto._id)">
-                                     <b-icon icon="heart" aria-hidden="true"></b-icon>
+                                <b-button pill variant="success" @click="addToFavs(producto._id)">
+                                     <b-icon  v-bind:icon="text">heart</b-icon>
                                 </b-button>
                             </div>
                         </div>
@@ -42,11 +42,11 @@
     import {mapGetters} from 'vuex';
 
     export default {
-        props: ['producto'],
+        props: ['producto','text'],                 
         data(){
             return{
                 idTemporal: "",
-                items: []
+                items: [],                    
             }
         },
         computed:{
@@ -58,8 +58,19 @@
             })
         },
         methods: {
-            addToFavs(producto){ 
-                 console.log(producto)
+            addToFavs(producto){                            
+                if(this.items.find(producto => producto._id==producto)){
+                    this.items = this.items.filter(function( obj ) {
+                        console.log("Holi");
+                        return obj.id !== producto._id;
+                    });
+                    alert("Se ha quitado de favoritos");
+                }                    
+                else{
+                    this.items.push(producto);
+                    alert("Se ha añadido a favoritos");
+                }                                    
+                console.log(producto)
             }
 
         } 
