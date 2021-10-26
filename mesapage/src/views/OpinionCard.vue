@@ -14,16 +14,10 @@
             </b-col>
             <b-col cols="2" class="border box">
                 <b-row>
-                    <h7><b><em>Comentario</em></b></h7>
-                </b-row>
-
-                <b-row>
                     <h2><b>¡Excelente página!</b></h2>
                 </b-row>
 
                 <b-row align-h="center">
-                    Esta es la página del mundo! Deberian haber
-                    más como esta, yo la encontré en facebook.
                     Esta es la página del mundo! Deberian haber
                     más como esta, yo la encontré en facebook.
                 </b-row>
