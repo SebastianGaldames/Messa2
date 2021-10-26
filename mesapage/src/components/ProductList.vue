@@ -22,7 +22,7 @@
                             </div>
                             <!-- Columna de precio -->
                             <div class="col separacion">
-                                <b style="font-size:20px">Precio: {{producto.precio}}</b>
+                                <b style="font-size:20px">Precio: ${{producto.precio}}</b>
                                 <!-- <button>Agregar al carro</button> -->
                                 <b-button variant="primary">Agregar al carro</b-button>
                             </div>
