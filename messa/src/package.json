@@ -12,7 +12,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "type": "module",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-3": "^6.24.1",
@@ -27,5 +26,8 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.13"
+  },
+  "optionalDependencies": {
+    "type": "module"
   }
 }
