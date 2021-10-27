@@ -204,8 +204,9 @@
         },
         methods: {
             listar() {
+                console.log(process.env);
                 let me=this;
-                axios.get('http://localhost:4000/api/Producto/list').then(function (response){
+                axios.get(`${process.env.VUE_APP_BACK_URL}/api/Producto/list`).then(function (response){
                     //console.log(response);
                     me.arrayproductos=response.data;
                 }).catch(function(error){
@@ -234,7 +235,7 @@
                 //Cuando es agregar un producto
                 if(me.editar === false){
                     console.log(this.producto.nombre);
-                    axios.post('http://localhost:4000/api/Producto/add',
+                    axios.post(`${process.env.VUE_APP_BACK_URL}/api/Producto/add`,
                     {'nombre':this.producto.nombre,
                     'precio':this.producto.precio,
                     'stockS':this.producto.stockS,
@@ -261,7 +262,7 @@
                 //Cuando es editar un producto
                 else{
                     //console.log(me.idEditar);
-                    axios.put('http://localhost:4000/api/Producto/update',
+                    axios.put(`${process.env.VUE_APP_BACK_URL}/api/Producto/update`,
                     {'_id':me.idEditar,
                     'nombre':this.producto.nombre,
                     'precio':this.producto.precio,
@@ -299,7 +300,7 @@
                 console.log(item._id);
                 let me=this;
                 me.idEliminar = item._id;
-                axios.delete(`http://localhost:4000/api/Producto/remove/${item._id}`
+                axios.delete(`${process.env.VUE_APP_BACK_URL}/api/Producto/remove/${item._id}`
                 )
                 .then(function(response){
                         me.delete = false;

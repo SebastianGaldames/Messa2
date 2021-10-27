@@ -1,17 +1,20 @@
-import express from 'express';
-import morgan from 'morgan';
-import cors from 'cors';
-import path from 'path';
-import mongoose from 'mongoose';
-import router from './routes';
-//const express = require('express');
-//const morgan = require('morgan');
-//const cors=require('cors');
-//const mongoose = require('mongoose');
+// import express from 'express';
+// import morgan from 'morgan';
+// import cors from 'cors';
+// import path from 'path';
+// import mongoose from 'mongoose';
+// import router from './routes';
+const express = require('express');
+const morgan = require('morgan');
+const cors = require('cors');
+const path = require('path');
+const mongoose = require('mongoose');
+const router = require('./routes');
+require('dotenv').config();
 
 const app = express();
 mongoose.Promise=global.Promise;
-mongoose.connect('mongodb+srv://diegoaguilera4:Messa@cluster0.ltzow.mongodb.net/messa?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGO_URL)
     .then(db => console.log('DB is connected'))
     .catch(err => console.error(err));
 
@@ -29,7 +32,7 @@ app.use(cors());
 app.use('/api',router);
 
 //Settings
-app.set('port', process.env.PORT || 4000);
+app.set('port', 3000);
 
 //Static files
 app.use(express.static(__dirname + '/public'));
@@ -39,3 +42,5 @@ app.listen(app.get('port'), () => {
     console.log('Server on port', app.get('port'));
     console.log(path.join(__dirname,'public'));
 });
+
+module.exports = app;

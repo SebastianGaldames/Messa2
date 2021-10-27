@@ -21,7 +21,7 @@
                             </div>
                             <!-- Columna de precio -->
                             <div class="col  offset-md-3">
-                                <b>Precio: {{producto.precio}}</b>
+                                <b>Precio: ${{producto.precio}}</b>
                                 <button>Agregar al carro</button>  
                             </div>
                         </div>

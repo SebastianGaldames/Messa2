@@ -200,6 +200,7 @@
 
 <script>
     import axios from 'axios'
+    require('dotenv').config();
     // class Usuario {
     //     constructor(nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
     //         this.nombre= nombre;
@@ -230,7 +231,8 @@
         },
          methods:{
            busqueda(Usuario){
-               axios.post('http://localhost:4000/api/Usuario/login', {nombreUsuario: this.nombreUsuario, password: this.password})
+             
+               axios.post(`${process.env.VUE_APP_BACK_URL}/api/Usuario/login`, {nombreUsuario: this.nombreUsuario, password: this.password})
                .then(respuesta =>{
                   return respuesta.data;
                })

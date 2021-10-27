@@ -1,5 +1,6 @@
-import models from "../models";
-export default {
+// import models from "../models";
+const models = require("../models");
+const ProductoController = {
     //Metodo para añadir un producto
     add: async (req,res,next) =>{
         try{
@@ -96,4 +97,6 @@ export default {
             next(e);
         }
     }
-}
+};
+
+module.exports = ProductoController;

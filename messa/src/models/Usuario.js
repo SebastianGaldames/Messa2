@@ -1,4 +1,5 @@
-import mongoosse,{Schema} from 'mongoose';
+const mongoosse = require('mongoose');
+const {Schema} = require('mongoose');
 
 const usuarioSchema = new Schema({
     rol: { type:String,maxlength:30, required:true},
@@ -18,4 +19,4 @@ const usuarioSchema = new Schema({
 
 const Usuario = mongoosse.model('Usuario',usuarioSchema);
 
-export default Usuario;
+module.exports = Usuario;

@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "create-env": "printenv > .env && cat .env"
   },
   "dependencies": {
     "axios": "^0.22.0",
     "bootstrap": "^5.1.2",
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
+    "dotenv": "^10.0.0",
     "jwt-decode": "^3.1.2",
     "vue": "^2.6.14",
     "vue-axios": "^3.3.7",

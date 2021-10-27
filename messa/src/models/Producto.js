@@ -1,4 +1,6 @@
-import mongoosse,{Schema} from 'mongoose';
+// import mongoosse,{Schema} from 'mongoose';
+const mongoosse = require('mongoose');
+const {Schema} = require('mongoose');
 
 const productoSchema = new Schema({
     nombre: {type:String, maxlength:50, required:true },
@@ -17,4 +19,4 @@ const productoSchema = new Schema({
 
 const Producto = mongoosse.model('Producto',productoSchema);
 
-export default Producto;
+module.exports = Producto;

@@ -211,7 +211,7 @@
 import NavBar from '../components/NavBar.vue';
 import BusquedaForm from '../components/BusquedaForm.vue';
 import axios from 'axios'
-
+require('dotenv').config();
     class Usuario {
         constructor(rol,nombre,rut,nombreUsuario,email,telefono,direccion,numero,comuna,ciudad,region,password,imagen){
             this.rol = rol;
@@ -274,7 +274,7 @@ import axios from 'axios'
 
           
           
-          axios.post('http://localhost:4000/api/Usuario/add',
+          axios.post(`${process.env.VUE_APP_BACK_URL}/api/Usuario/add`,
           {
             'rol': 'Cliente',
             'nombre': this.usuario.nombre,

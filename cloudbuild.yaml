@@ -1,0 +1,36 @@
+steps:
+  - name: node:14
+    entrypoint: npm
+    args: ["install"]
+    dir: "mesapage"
+    id: "instalando-front"
+    waitFor: ["-"]
+  - name: node:14
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - "VUE_APP_BACK_URL=${_VUE_APP_BACK_URL}"
+    dir: "mesapage"
+    id: "env-front"
+    waitFor: ["instalando-front"]
+  - name: node:14
+    entrypoint: npm
+    args: ["run", "build"]
+    dir: "mesapage"
+    id: "construyendo-front"
+    waitFor: ["instalando-front", "env-front"]
+  - name: node:14
+    entrypoint: npm
+    args: ["install"]
+    dir: "messa"
+    id: "instalando-back"
+    waitFor: ["-"]
+  - name: node:14
+    entrypoint: npm
+    args: ["run", "create-env"]
+    env:
+      - "MONGO_URL=${_MONGO_URL}"
+    dir: "messa"
+    id: "env-back"
+    waitFor: ["instalando-back"]
+  

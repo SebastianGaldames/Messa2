@@ -4,6 +4,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import decode from 'jwt-decode'
 import router from '../router'
+require('dotenv').config();
 
 Vue.use(Vuex)
 Vue.use(VueAxios, axios)
@@ -107,7 +108,7 @@ export default new Vuex.Store({
   },
   actions:{
     obtener_productos({ commit }) {
-      axios.get('http://localhost:4000/api/Producto/list')
+      axios.get(`${process.env.VUE_APP_BACK_URL}/api/Producto/list`)
           .then(response => {
               commit('SET_PRODUCTOS', response.data)
               //console.log(state.productos)

@@ -1,7 +1,11 @@
-import models from "../models";
-import bcrypt from 'bcryptjs';
-import token from '../services/token';
-export default {
+// import models from "../models";
+// import bcrypt from 'bcryptjs';
+// import token from '../services/token';
+
+const models = require('../models');
+const bcrypt = require('bcryptjs');
+const token = require('../services/token');
+const UsuarioController = {
     //Metodo para crear un usuario (registro)
     add: async (req,res,next) =>{
         try{
@@ -107,3 +111,5 @@ export default {
         }
     }
 }
+
+module.exports = UsuarioController;
