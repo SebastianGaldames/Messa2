@@ -22,7 +22,7 @@ steps:
   - name: node:14
     entrypoint: npm
     args: ["install"]
-    dir: "messa"
+    dir: "messa/src"
     id: "instalando-back"
     waitFor: ["-"]
   - name: node:14
@@ -30,7 +30,7 @@ steps:
     args: ["run", "create-env"]
     env:
       - "MONGO_URL=${_MONGO_URL}"
-    dir: "messa"
+    dir: "messa/src"
     id: "env-back"
     waitFor: ["instalando-back"]
   
