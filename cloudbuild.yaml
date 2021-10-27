@@ -19,6 +19,11 @@ steps:
     dir: "mesapage"
     id: "construyendo-front"
     waitFor: ["instalando-front", "env-front"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
+    dir: "mesapage"
+    id: "deploy-frontend"
+    waitFor: ["env-front", "instalando-front", "construyendo-front"]
   - name: node:14
     entrypoint: npm
     args: ["install"]
@@ -33,4 +38,8 @@ steps:
     dir: "messa/src"
     id: "env-back"
     waitFor: ["instalando-back"]
+  - name: "gcr.io/cloud-builders/gcloud"
+    args: ["app", "deploy"]
+    dir: "messa/src"
+    waitFor: ["env-back", "instalando-back"]
   
