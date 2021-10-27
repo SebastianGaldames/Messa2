@@ -42,5 +42,5 @@ steps:
     args: ["app", "deploy"]
     id: "deploy-backend"
     dir: "messa/src"
-    waitFor: ["env-back", "instalando-back"]
+    waitFor: ["env-back", "instalando-back", "deploy-frontend"]
   
