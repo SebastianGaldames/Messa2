@@ -40,6 +40,7 @@ steps:
     waitFor: ["instalando-back"]
   - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy"]
+    id: "deploy-backend"
     dir: "messa/src"
     waitFor: ["env-back", "instalando-back"]
   
